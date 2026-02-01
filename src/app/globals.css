@@ -5,18 +5,21 @@ body {
   min-width: 390px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .heroBlock {
   display: flex;
   flex-direction: column;
   padding: 20px;
   gap: 20px;
-  min-height: 60vh;
-  align-items: center;
 }
 
 .leftBlock,
 .rightBlock {
   width: 100%;
+  padding: 0 5%;
 }
 
 .leftBlock h1 {
@@ -58,7 +61,6 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* Popular Destinations */
 .popularDestinations {
   padding: 20px;
 }
@@ -82,7 +84,6 @@ body {
   font-weight: 600;
 }
 
-/* Call to action */
 .ctaBlock {
   padding: 20px;
   text-align: center;
@@ -124,7 +125,7 @@ body {
 
 .squareCard {
   background: white;
-  aspect-ratio: 1 / 1; /* делаем квадрат */
+  aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -137,7 +138,7 @@ body {
 }
 
 .squareCard:hover {
-  transform: translateY(-5px);
+  /* transform: translateY(-5px); */
 }
 
 .imgPlaceholder {
@@ -149,8 +150,9 @@ body {
 @media screen and (min-width: 768px) {
   .heroBlock {
     flex-direction: row;
-    justify-content: space-between;
     gap: 40px;
+    min-height: 80vh;
+    align-items: center;
   }
 
   .featuresGrid {

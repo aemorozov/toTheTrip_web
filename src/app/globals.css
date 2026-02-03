@@ -29,10 +29,10 @@ body {
 
 .heroBlock {
   flex-direction: column-reverse;
-  gap: 100px;
+  gap: 20px;
   padding: 48px 20px;
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: center;
 }
 

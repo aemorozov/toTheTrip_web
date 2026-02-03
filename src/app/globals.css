@@ -42,7 +42,7 @@ body {
 }
 
 .leftBlock h1 {
-  font-size: 3rem;
+  font-size: 2.2em;
   line-height: 1.2;
   margin-bottom: 16px;
   color: var(--color-primary);
@@ -55,12 +55,11 @@ body {
 }
 
 .heroForm {
-  width: 100%;
+  /* width: 100%;
   background: white;
   padding: 24px;
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  height: 220px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06); */
 }
 
 .heroLabel {
@@ -73,12 +72,12 @@ body {
 
 .heroInput {
   border: 2px solid var(--color-secondary);
-  border-radius: 12px;
+  border-radius: 10px;
   outline: none;
   width: 100%;
-  padding: 14px 16px;
-  font-size: 2.2rem;
-  height: 100px;
+  padding: 9px;
+  font-size: 1.8rem;
+  height: 60px;
 }
 
 .heroInput:focus {

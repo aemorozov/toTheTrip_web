@@ -31,8 +31,8 @@ export default function HomePage() {
 
             <p className="heroDescription">
               <strong>toTheTrip</strong> - сервис по подборке самых дешевых
-              авиабилетов. Узнайте, куда и когда можно улететь дешевле всего —
-              без сложного поиска.
+              авиабилетов. Узнайте, куда и когда можно улететь из вашего города
+              дешевле всего — без сложного поиска.
             </p>
 
             <p className="heroDescription">
@@ -43,7 +43,7 @@ export default function HomePage() {
 
           <div className="heroForm">
             <label htmlFor="city" className="heroLabel">
-              Город вылета
+              Хочу билеты из
             </label>
             <input
               id="city"

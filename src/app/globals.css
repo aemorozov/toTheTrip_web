@@ -1,3 +1,11 @@
+:root {
+  --bg-main: aliceblue;
+  --color-primary: #052a1f;
+  --color-secondary: #6eb5c0;
+  --color-accent: #ffccbb;
+  --text-main: #0f172a;
+}
+
 html,
 body {
   margin: 0;
@@ -5,35 +13,90 @@ body {
   min-width: 390px;
 }
 
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }
 
 .heroBlock {
+  flex-direction: column-reverse;
+  gap: 100px;
+  padding: 48px 20px;
   display: flex;
-  flex-direction: column;
-  padding: 20px;
-  gap: 20px;
+  height: 100vh;
+  justify-content: center;
 }
 
 .leftBlock,
 .rightBlock {
   width: 100%;
-  padding: 0 5%;
 }
 
 .leftBlock h1 {
-  font-size: 2rem;
+  font-size: 3rem;
+  line-height: 1.2;
   margin-bottom: 16px;
+  color: var(--color-primary);
+}
+
+.heroDescription {
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin-bottom: 24px;
+}
+
+.heroForm {
+  width: 100%;
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  height: 220px;
+}
+
+.heroLabel {
+  color: var(--color-primary);
+  margin-bottom: 2rem;
+  font-weight: 600;
+  display: block;
+  font-size: 2em;
+}
+
+.heroInput {
+  border: 2px solid var(--color-secondary);
+  border-radius: 12px;
+  outline: none;
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 2.2rem;
+  height: 100px;
+}
+
+.heroInput:focus {
+  border-color: var(--color-primary);
 }
 
 .rightBlock h2 {
-  font-size: 1.5rem;
-  margin-bottom: 12px;
+  color: var(--color-primary);
 }
 
-.rightBlock ul li {
-  margin-bottom: 8px;
+.rightBlock ul li a {
+  color: var(--color-primary);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.rightBlock ul li a:hover {
+  text-decoration: underline;
 }
 
 /* Features Block */
@@ -150,9 +213,20 @@ body {
 @media screen and (min-width: 768px) {
   .heroBlock {
     flex-direction: row;
-    gap: 40px;
-    min-height: 80vh;
     align-items: center;
+    min-height: 80vh;
+  }
+
+  .leftBlock {
+    flex: 1.2;
+  }
+
+  .rightBlock {
+    flex: 0.8;
+  }
+
+  .leftBlock h1 {
+    font-size: 3.2rem;
   }
 
   .featuresGrid {
@@ -177,11 +251,31 @@ body {
     grid-template-columns: repeat(6, 1fr);
   }
 
-  .leftBlock h1 {
-    font-size: 3rem;
-  }
-
   .squareCardsGrid {
     grid-template-columns: repeat(6, 1fr);
+  }
+
+  .menu {
+    width: 94%;
+    height: 60px;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    -webkit-box-shadow: 0px 2px 8px -2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 2px 8px -2px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 2px 8px -2px rgba(34, 60, 80, 0.2);
+    margin-top: 10px;
+    background-color: beige;
+  }
+
+  .menuItems {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding: 0;
   }
 }

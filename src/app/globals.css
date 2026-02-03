@@ -64,7 +64,7 @@ body {
 
 .heroLabel {
   color: var(--color-primary);
-  margin-bottom: 2rem;
+  margin-bottom: 15px;
   font-weight: 600;
   display: block;
   font-size: 2em;

@@ -1,9 +1,11 @@
 :root {
-  --bg-main: aliceblue;
+  --bg-main: #0d72ff;
   --color-primary: #052a1f;
-  --color-secondary: #6eb5c0;
+  --color-secondary: #93cff7;
   --color-accent: #ffccbb;
   --text-main: #0f172a;
+  --text-second: #f8fffd;
+  --text-third: #0d141d;
 }
 
 html,
@@ -14,7 +16,6 @@ body {
 }
 
 body {
-  background-color: var(--bg-main);
   color: var(--text-main);
   font-family:
     system-ui,
@@ -28,12 +29,17 @@ body {
 }
 
 .heroBlock {
+  width: 95%;
+  margin: 10px auto 5px auto;
   flex-direction: column-reverse;
   gap: 20px;
   padding: 48px 20px;
   display: flex;
-  min-height: 100vh;
+  min-height: 85vh;
   justify-content: center;
+  color: var(--text-second);
+  border-radius: 20px;
+  background-color: var(--bg-main);
 }
 
 .leftBlock,
@@ -42,10 +48,9 @@ body {
 }
 
 .leftBlock h1 {
-  font-size: 2.2em;
+  font-size: 1.6em;
   line-height: 1.2;
   margin-bottom: 16px;
-  color: var(--color-primary);
 }
 
 .heroDescription {
@@ -63,25 +68,26 @@ body {
 }
 
 .heroLabel {
-  color: var(--color-primary);
+  color: var(--text-second);
   margin-bottom: 15px;
   font-weight: 600;
   display: block;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .heroInput {
-  border: 2px solid var(--color-secondary);
-  border-radius: 10px;
+  border: 0px solid var(--color-secondary);
+  border-radius: 15px;
   outline: none;
   width: 100%;
-  padding: 9px;
-  font-size: 1.8rem;
+  padding: 12px;
+  font-size: 1.6rem;
   height: 60px;
+  color: var(--text-third);
 }
 
 .heroInput:focus {
-  border-color: var(--color-primary);
+  /* border-color: var(--color-primary); */
 }
 
 .rightBlock h2 {

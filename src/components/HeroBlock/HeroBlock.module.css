@@ -19,7 +19,6 @@
   display: block;
 }
 
-.heroInput,
 .searchButton {
   border: 0px solid var(--color-secondary);
   width: 100%;
@@ -34,10 +33,6 @@
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
-}
-
-.heroInput:focus {
-  /* border-color: var(--color-primary); */
 }
 
 .searchButton {

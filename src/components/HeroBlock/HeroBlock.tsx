@@ -1,18 +1,14 @@
 import styles from "./HeroBlock.module.css";
+import CityInput from "../CityInput/CityInput";
 
 export function HeroBlock() {
   return (
     <section className={styles.heroBlock}>
       <div className={styles.heroForm}>
         <label htmlFor="city" className={styles.heroLabel}>
-          I want tickets from
+          I want cheap flights from
         </label>
-        <input
-          id="city"
-          type="text"
-          placeholder="Bucharest"
-          className={styles.heroInput}
-        />
+        <CityInput />
         <button className={styles.searchButton}>Click</button>
       </div>
       <div className={styles.leftBlock}>
@@ -21,7 +17,7 @@ export function HeroBlock() {
         <p className={styles.heroDescription}>
           <strong>toTheTrip</strong> - a service for finding the cheapest
           flights. Find out where <strong>the cheapest flights</strong> from
-          your city are without a complicated search..
+          your city are without a complicated search.
         </p>
 
         <p className={styles.heroDescription}>

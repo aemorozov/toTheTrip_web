@@ -4,23 +4,23 @@ export function HeroBlock() {
   return (
     <section className={styles.heroBlock}>
       <div className={styles.leftBlock}>
-        <h1>Самые дешёвые авиабилеты из твоего города</h1>
+        <h1>The cheapest flights from your city</h1>
 
         <p className={styles.heroDescription}>
-          <strong>toTheTrip</strong> - сервис по подбору самых дешевых
-          авиабилетов. Узнайте без сложного поиска, куда можно улететь из вашего
-          города <strong>дешевле всего</strong>.
+          <strong>toTheTrip</strong> - a service for finding the cheapest
+          flights. Find out where <strong>the cheapest flights</strong> from
+          your city are without a complicated search..
         </p>
 
         <p className={styles.heroDescription}>
-          Мы собираем самые дешёвые авиабилеты, найденные другими пользовтелями,
-          из разных городов по всем направлениям и датам.
+          We collect the cheapest flights found by other users from various
+          cities across all destinations and dates.
         </p>
       </div>
 
       <div className={styles.heroForm}>
         <label htmlFor="city" className={styles.heroLabel}>
-          Хочу билеты из
+          I want tickets from
         </label>
         <input
           id="city"
@@ -28,7 +28,7 @@ export function HeroBlock() {
           placeholder="Bucharest"
           className={styles.heroInput}
         />
-        <button className={styles.searchButton}>Смотреть авиабилеты</button>
+        <button className={styles.searchButton}>Click</button>
       </div>
     </section>
   );

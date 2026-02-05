@@ -1,5 +1,6 @@
 :root {
-  --bg-main: #0d72ff;
+  --bg-main: #161121;
+  --bg-accent: #0d72ff;
   --color-primary: #052a1f;
   --color-secondary: #93cff7;
   --color-accent: #ffccbb;
@@ -22,86 +23,11 @@ body {
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
+  background: var(--bg-main);
 }
 
 * {
   box-sizing: border-box;
-}
-
-.heroBlock {
-  width: 95%;
-  margin: 10px auto 5px auto;
-  flex-direction: column-reverse;
-  gap: 20px;
-  padding: 48px 20px;
-  display: flex;
-  min-height: 85vh;
-  justify-content: center;
-  color: var(--text-second);
-  border-radius: 20px;
-  background-color: var(--bg-main);
-}
-
-.leftBlock,
-.rightBlock {
-  width: 100%;
-}
-
-.leftBlock h1 {
-  font-size: 1.6em;
-  line-height: 1.2;
-  margin-bottom: 16px;
-}
-
-.heroDescription {
-  font-size: 1.05rem;
-  max-width: 600px;
-  margin-bottom: 24px;
-}
-
-.heroForm {
-  /* width: 100%;
-  background: white;
-  padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06); */
-}
-
-.heroLabel {
-  color: var(--text-second);
-  margin-bottom: 15px;
-  font-weight: 600;
-  display: block;
-  font-size: 1.5em;
-}
-
-.heroInput {
-  border: 0px solid var(--color-secondary);
-  border-radius: 15px;
-  outline: none;
-  width: 100%;
-  padding: 12px;
-  font-size: 1.6rem;
-  height: 60px;
-  color: var(--text-third);
-}
-
-.heroInput:focus {
-  /* border-color: var(--color-primary); */
-}
-
-.rightBlock h2 {
-  color: var(--color-primary);
-}
-
-.rightBlock ul li a {
-  color: var(--color-primary);
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.rightBlock ul li a:hover {
-  text-decoration: underline;
 }
 
 /* Features Block */

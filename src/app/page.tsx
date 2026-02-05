@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
+import { HeroBlock } from "../components/HeroBlock/HeroBlock";
 
 export const metadata: Metadata = {
   title: "Дешёвые авиабилеты по всем направлениям — ToTheTrip",
@@ -25,36 +26,9 @@ export default function HomePage() {
         </div>
       </header> */}
       <main>
-        <section className="heroBlock">
-          <div className="leftBlock">
-            <h1>Самые дешёвые авиабилеты из твоего города</h1>
+        <HeroBlock />
 
-            <p className="heroDescription">
-              <strong>toTheTrip</strong> - сервис по подборке самых дешевых
-              авиабилетов. Узнайте, куда и когда можно улететь из вашего города
-              дешевле всего — без сложного поиска.
-            </p>
-
-            <p className="heroDescription">
-              Мы собираем самые дешёвые авиабилеты, найденные другими
-              пользовтелями, из разных городов по всем направлениям и датам.
-            </p>
-          </div>
-
-          <div className="heroForm">
-            <label htmlFor="city" className="heroLabel">
-              Хочу билеты из
-            </label>
-            <input
-              id="city"
-              type="text"
-              placeholder="Bucharest"
-              className="heroInput"
-            />
-          </div>
-        </section>
-
-        <section className="squareCardsBlock">
+        {/* <section className="squareCardsBlock">
           <h2>Популярные направления в этом месяце</h2>
           <div className="squareCardsGrid">
             <div className="squareCard">
@@ -122,7 +96,7 @@ export default function HomePage() {
           <h2>Начните искать билеты прямо сейчас</h2>
           <p>Введите город вылета и получите лучшие предложения мгновенно.</p>
           <button>Поиск билетов</button>
-        </section>
+        </section> */}
       </main>
     </>
   );

@@ -13,64 +13,72 @@ export default function CityInput() {
   const [city, setCity] = useState<string>(""); // всегда string
   const lockedByUser = useRef(false);
 
-  const safeSetCity = (value?: string | null) => {
+  const safeSetCity = (value?: string) => {
     if (lockedByUser.current) return;
     if (!value || !value.trim()) return;
     setCity(value);
   };
 
-  const resolveCityViaPlaces = async (term: string) => {
-    console.log("ntrcn");
+  const resolveViaPlaces = async (term: string): Promise<boolean> => {
     try {
       const res = await fetch(`/api/places?term=${encodeURIComponent(term)}`);
       const data: Place[] = await res.json();
 
-      if (!data.length) return;
+      if (!Array.isArray(data) || !data.length) return false;
 
-      const best = data[0];
-
-      // airport → берём city_name
-      if (best.type === "airport" && best.city_name) {
-        safeSetCity(best.city_name);
-        return;
+      // 1️⃣ airport → city_name
+      const airport = data.find((p) => p.type === "airport" && p.city_name);
+      if (airport?.city_name) {
+        safeSetCity(airport.city_name);
+        return true;
       }
 
-      // city → name
-      safeSetCity(best.name);
+      // 2️⃣ city → name
+      const city = data.find((p) => p.type === "city");
+      if (city?.name) {
+        safeSetCity(city.name);
+        return true;
+      }
+
+      return false;
     } catch {
-      // тихо фейлим
+      return false;
     }
   };
 
   useEffect(() => {
-    // 1️⃣ URL
-    const params = new URLSearchParams(window.location.search);
-    const fromUrl = params.get("origin") || params.get("from");
-    if (fromUrl) {
-      resolveCityViaPlaces(fromUrl);
-    }
-
-    // 2️⃣ localStorage
+    // 1️⃣ localStorage
     const cached = localStorage.getItem("departure_city");
     if (cached) {
-      safeSetCity(cached);
-      return; // если есть — дальше не нужно
+      setCity(cached);
+      return;
     }
 
-    // 3️⃣ IP fallback
-    fetch("/api/ip-geo")
+    // 2️⃣ IP → city → places2
+    fetch("https://ipapi.co/json/")
       .then((res) => res.json())
-      .then((data) => {
-        if (data.city) {
-          resolveCityViaPlaces(data.city);
+      .then(async (data) => {
+        if (data?.city) {
+          const ok = await resolveViaPlaces(data.city);
+          if (ok) return;
         }
+
+        // 3️⃣ IP → country → places2
+        if (data?.country_name) {
+          const ok = await resolveViaPlaces(data.country_name);
+          if (ok) return;
+        }
+
+        // 4️⃣ hard fallback
+        safeSetCity("New York");
       })
-      .catch(() => {});
+      .catch(() => {
+        safeSetCity("New York");
+      });
   }, []);
 
   return (
     <input
-      type="text"
       className={styles.heroInput}
       value={city}
       placeholder="City of departure"

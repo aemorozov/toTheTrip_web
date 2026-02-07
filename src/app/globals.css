@@ -1,12 +1,16 @@
 :root {
-  --bg-main: #161121;
-  --bg-accent: #0d72ff;
-  --color-primary: #052a1f;
-  --color-secondary: #93cff7;
-  --color-accent: #ffccbb;
-  --text-main: #0f172a;
-  --text-second: #f8fffd;
-  --text-third: #212933;
+  --bg-main: #0a0f1f;
+  --bg-accent: #ffffff;
+
+  --color-primary: #020617;
+  --color-secondary: #475569;
+
+  --input-border: #3b82f6;
+  --input-text: #020617;
+
+  --btn-bg: #ff6b00;
+  --btn-text: #ffffff;
+  --btn-hover: #ff8c1a;
 }
 
 html,
@@ -17,7 +21,7 @@ body {
 }
 
 body {
-  color: var(--text-main);
+  color: var(--color-primary);
   font-family:
     system-ui,
     -apple-system,

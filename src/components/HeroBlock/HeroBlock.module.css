@@ -6,13 +6,19 @@
   padding: 48px 20px;
   display: flex;
   justify-content: center;
-  color: var(--text-second);
+  color: var(--color-primary);
   border-radius: 20px;
-  background-color: var(--bg-accent);
+  background:
+    linear-gradient(160deg, #e0f2fe 0%, #ffffff 55%),
+    radial-gradient(
+      100% 100% at 100% 0%,
+      rgba(99, 102, 241, 0.08),
+      transparent 50%
+    );
 }
 
 .heroLabel {
-  color: var(--text-second);
+  color: var(--color-primary);
   margin-bottom: 10px;
   font-size: 1.4em;
   font-weight: 600;
@@ -20,31 +26,31 @@
 }
 
 .searchButton {
-  border: 0px solid var(--color-secondary);
+  border: 0px solid var(--input-border);
   width: 100%;
-  height: 45px;
-  color: var(--text-third);
+  height: 50px;
+  color: var(--btn-text);
+  /* background-color: var(--btn-bg); */
+  background: linear-gradient(135deg, #ff7a00 0%, #f9a631 100%);
+  margin-top: 14px;
   border-radius: 15px;
   outline: none;
-  padding: 15px;
+  padding: 0;
   font-size: 1.4rem;
   font-family:
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
-}
-
-.searchButton {
-  margin-top: 14px;
-  background-color: #fc8448;
-  padding: 0;
-  font-weight: 600;
-  font-size: 1em;
-  color: aliceblue;
   -webkit-box-shadow: 0px 4px 6px 0px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 0px 4px 6px 0px rgba(34, 60, 80, 0.2);
   box-shadow: rgba(34, 60, 80, 0.2) 0px 4px 6px;
+  position: relative;
+}
+
+.searchButton:active {
+  background: var(--btn-hover);
+  top: 1px;
 }
 
 .leftBlock {

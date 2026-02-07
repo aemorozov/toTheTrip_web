@@ -68,13 +68,8 @@ export default function CityInput() {
           const ok = await resolveViaPlaces(data.country_name);
           if (ok) return;
         }
-
-        // 4️⃣ hard fallback
-        safeSetCity("New York");
       })
-      .catch(() => {
-        safeSetCity("New York");
-      });
+      .catch(() => {});
   }, []);
 
   return (

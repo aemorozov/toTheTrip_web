@@ -1,5 +1,5 @@
 import styles from "./HeroBlock.module.css";
-import CityInput from "../CityInput/CityInput";
+import CityInput from "./CityInput/CityInput";
 
 export function HeroBlock() {
   return (
@@ -16,8 +16,9 @@ export function HeroBlock() {
 
         <p className={styles.heroDescription}>
           <strong>toTheTrip</strong> - a service for finding the cheapest
-          flights. Find out where <strong>the cheapest flights</strong> from
-          your city are without a complicated search.
+          flights. Find out where{" "}
+          <strong>the cheapest flights from your city</strong> are without a
+          complicated search.
         </p>
 
         <p className={styles.heroDescription}>

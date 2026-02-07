@@ -9,12 +9,9 @@
   color: var(--color-primary);
   border-radius: 20px;
   background:
-    linear-gradient(160deg, #e0f2fe 0%, #ffffff 55%),
-    radial-gradient(
-      100% 100% at 100% 0%,
-      rgba(99, 102, 241, 0.08),
-      transparent 50%
-    );
+    linear-gradient(160deg, #7bcaff 0%, #ecf1ff 55%),
+    radial-gradient(100% 100% at 100% 0, #6366f114, #0000 50%);
+  border: 1px solid #ced4ff;
 }
 
 .heroLabel {
@@ -64,6 +61,7 @@
 }
 
 .heroDescription {
-  font-size: 1.05rem;
   max-width: 600px;
+  font-size: 0.9em;
+  font-weight: 300;
 }

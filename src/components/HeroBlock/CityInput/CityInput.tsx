@@ -49,7 +49,9 @@ export default function CityInput() {
   useEffect(() => {
     // 1️⃣ localStorage
     const cached = localStorage.getItem("departure_city");
+    console.log("Читаем localStorage");
     if (cached) {
+      console.log("localStorage значение:", cached);
       setCity(cached);
       return;
     }

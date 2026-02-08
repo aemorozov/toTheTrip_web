@@ -20,13 +20,13 @@
 }
 
 .searchButton {
-  border: 0px;
-  width: 100%;
-  height: 50px;
   color: var(--btn-text);
   background: var(--btn-bg);
+  width: 100%;
+  height: 50px;
+  border: 0px;
   margin-top: 14px;
-  border-radius: 15px;
+  border-radius: 10px;
   outline: none;
   padding: 0;
   font-size: 1.4rem;
@@ -35,6 +35,7 @@
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
+  font-weight: 600;
   -webkit-box-shadow: 0px 4px 6px 0px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 0px 4px 6px 0px rgba(34, 60, 80, 0.2);
   box-shadow: rgba(34, 60, 80, 0.2) 0px 4px 6px;

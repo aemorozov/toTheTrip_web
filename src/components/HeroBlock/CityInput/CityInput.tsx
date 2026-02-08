@@ -76,6 +76,7 @@ export default function CityInput() {
 
   return (
     <input
+      id="cityInput"
       className={styles.heroInput}
       value={city}
       placeholder="City of departure"

@@ -1,13 +1,13 @@
 :root {
-  --bg-main: #171717;
-  --bg-accent: #026bfd;
-  --color-primary: #f8f9ff;
-  --color-secondary: #475569;
-  --input-border: #3b82f6;
-  --input-text: #010826;
-  --btn-bg: #fa6c25;
+  --bg-main: #ffffff;
+  --bg-accent: #eaf1fc;
+  --color-primary: #00072c;
+  --color-secondary: #0e192d;
+  --input-text: #101630;
+  --btn-bg: #347ddd;
   --btn-text: #ffffff;
-  --btn-hover: #fa6e28;
+  --btn-hover: #268eca;
+  --nav-bg: #c8fcec;
 }
 
 html,

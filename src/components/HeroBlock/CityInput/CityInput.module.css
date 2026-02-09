@@ -1,6 +1,5 @@
 .heroInput {
   border: 0px solid var(--input-border);
-  background-color: rgb(243, 242, 240);
   color: var(--input-text);
   width: 100%;
   height: 45px;

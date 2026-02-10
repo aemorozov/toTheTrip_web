@@ -1,80 +1,45 @@
-import { notFound } from "next/navigation";
-import { Metadata } from "next";
-import { cities } from "../../../../lib/cities";
+import styles from "./page.module.css";
 
-type Props = {
-  params: { city: string };
+type PageProps = {
+  params: Promise<{ city: string }>;
 };
 
-export const revalidate = 1800; // 30 минут
+type Place = {
+  type: "city";
+  name: string;
+  code?: string;
+  country_name?: string;
+};
 
-// 🔥 Предгенерация популярных городов
-export async function generateStaticParams() {
-  return Object.keys(cities).map((city) => ({ city }));
-}
+export default async function CityPage({ params }: PageProps) {
+  const { city } = await params;
+  const citySlug = decodeURIComponent(city);
 
-// 🔥 Динамические SEO-мета
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const city = cities[params.city];
+  const res = await fetch(
+    `https://autocomplete.travelpayouts.com/places2?term=${encodeURIComponent(
+      citySlug,
+    )}&types[]=city`,
+    { cache: "no-store" },
+  );
 
-  if (!city) {
-    return {};
-  }
+  const places: Place[] = await res.json();
 
-  return {
-    title: `Дешёвые авиабилеты из ${city.nameFrom} — ToTheTrip`,
-    description: `Самые дешёвые авиабилеты из ${city.nameFrom} по всем направлениям и датам`,
-  };
-}
-
-// async function getTickets(cityCode: string) {
-//   const res = await fetch(
-//     `${process.env.API_URL}/api/site/tickets/from/${cityCode}`,
-//     { cache: "force-cache" },
-//   );
-
-//   if (!res.ok) {
-//     return [];
-//   }
-
-//   return res.json();
-// }
-
-export default async function Page({ params }: Props) {
-  const resolvedParams = await params;
-  const city = cities[resolvedParams.city];
-
-  if (!city) {
-    notFound();
-  }
-
-  //   const tickets = await getTickets(city.code);
+  const matchedCity = places.find(
+    (p) => p.type === "city" && p.name.toLowerCase() === citySlug.toLowerCase(),
+  );
 
   return (
-    <main>
-      <div className="helloBlock">
-        <div className="leftBlock">
-          <h1>Дешёвые авиабилеты из {city.nameFrom}</h1>
+    <main className={styles.mainBlock}>
+      <h1>
+        Cheapest flights <br />
+        from {matchedCity ? matchedCity.name : citySlug}
+      </h1>
 
-          <p>
-            Мы анализируем цены на авиабилеты из {city.nameFrom} по всем
-            направлениям и датам, чтобы найти самые выгодные предложения.
-          </p>
-        </div>
-        <div className="rightBlock">
-          <h2>Куда можно улететь дёшево</h2>
-
-          {/* {tickets.length === 0 && <p>Нет доступных билетов</p>} */}
-
-          {/* <ul>
-        {tickets.map((t: any) => (
-          <li key={t.link}>
-            {t.destination} — {t.price} ₽
-          </li>
-        ))}
-      </ul> */}
-        </div>
-      </div>
+      {matchedCity ? (
+        <p>Country: {matchedCity.country_name}</p>
+      ) : (
+        <p>We are showing results for a custom city entered by the user.</p>
+      )}
     </main>
   );
 }

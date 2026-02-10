@@ -26,11 +26,15 @@
 }
 
 .logo {
-  font-size: 1.3em;
+  font-size: 1.4em;
   font-weight: 600;
 }
 
 .description {
-  font-size: 0.6em;
+  font-size: 0.7em;
   font-weight: 400;
+}
+
+.link {
+  text-decoration: none;
 }

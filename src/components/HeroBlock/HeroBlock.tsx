@@ -1,15 +1,31 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import styles from "./HeroBlock.module.css";
 import CityInput from "./CityInput/CityInput";
 
 export function HeroBlock() {
+  const router = useRouter();
+  const [city, setCity] = useState<string>("");
+
+  const onSearch = () => {
+    if (!city.trim()) return;
+    router.push(`/flights/from/${encodeURIComponent(city)}`);
+  };
+
   return (
     <section className={styles.heroBlock}>
       <div className={styles.heroForm}>
         <label htmlFor="city" className={styles.heroLabel}>
           I want cheap flights from
         </label>
-        <CityInput />
-        <button className={styles.searchButton}>Click</button>
+
+        <CityInput onChange={setCity} />
+
+        <button className={styles.searchButton} onClick={onSearch}>
+          Click
+        </button>
       </div>
       <div className={styles.leftBlock}>
         <h1>The cheapest flights from your city</h1>

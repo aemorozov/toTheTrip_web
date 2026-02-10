@@ -9,14 +9,20 @@ type Place = {
   city_name?: string;
 };
 
-export default function CityInput() {
-  const [city, setCity] = useState<string>(""); // всегда string
-  const lockedByUser = useRef(false);
+type Props = {
+  onChange?: (value: string) => void;
+};
+
+export default function CityInput({ onChange }: Props) {
+  const [city, setCity] = useState<string>("");
+  const lockedByUser = useRef<boolean>(false);
 
   const safeSetCity = (value?: string) => {
     if (lockedByUser.current) return;
-    if (!value || !value.trim()) return;
+    if (!value?.trim()) return;
+
     setCity(value);
+    onChange?.(value);
   };
 
   const resolveViaPlaces = async (term: string): Promise<boolean> => {
@@ -24,16 +30,14 @@ export default function CityInput() {
       const res = await fetch(`/api/places?term=${encodeURIComponent(term)}`);
       const data: Place[] = await res.json();
 
-      if (!Array.isArray(data) || !data.length) return false;
+      if (!Array.isArray(data) || data.length === 0) return false;
 
-      // 1️⃣ airport → city_name
       const airport = data.find((p) => p.type === "airport" && p.city_name);
       if (airport?.city_name) {
         safeSetCity(airport.city_name);
         return true;
       }
 
-      // 2️⃣ city → name
       const city = data.find((p) => p.type === "city");
       if (city?.name) {
         safeSetCity(city.name);
@@ -47,16 +51,13 @@ export default function CityInput() {
   };
 
   useEffect(() => {
-    // 1️⃣ localStorage
     const cached = localStorage.getItem("departure_city");
-    console.log("Читаем localStorage");
     if (cached) {
-      console.log("localStorage значение:", cached);
       setCity(cached);
+      onChange?.(cached);
       return;
     }
 
-    // 2️⃣ IP → city → places2
     fetch("https://ipapi.co/json/")
       .then((res) => res.json())
       .then(async (data) => {
@@ -65,14 +66,12 @@ export default function CityInput() {
           if (ok) return;
         }
 
-        // 3️⃣ IP → country → places2
         if (data?.country_name) {
-          const ok = await resolveViaPlaces(data.country_name);
-          if (ok) return;
+          await resolveViaPlaces(data.country_name);
         }
       })
       .catch(() => {});
-  }, []);
+  }, [onChange]);
 
   return (
     <input
@@ -84,6 +83,7 @@ export default function CityInput() {
         lockedByUser.current = true;
         const value = e.target.value;
         setCity(value);
+        onChange?.(value);
         localStorage.setItem("departure_city", value);
       }}
     />

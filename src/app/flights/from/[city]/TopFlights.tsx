@@ -36,6 +36,8 @@ export default async function TopFlights({ origin }: Props) {
     },
   );
 
+  console.log("res: ", res);
+
   if (!res.ok) {
     return <p>Unable to load flights.</p>;
   }

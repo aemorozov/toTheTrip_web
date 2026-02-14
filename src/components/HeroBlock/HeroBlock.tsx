@@ -35,7 +35,7 @@ export function HeroBlock() {
   const resolveViaPlaces = async (term: string): Promise<string | null> => {
     try {
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 1000);
+      const timeout = setTimeout(() => controller.abort(), 800);
 
       const res = await fetch(
         `/api/places?term=${encodeURIComponent(term)}&locale=en`,
@@ -120,6 +120,16 @@ export function HeroBlock() {
 
   return (
     <section className={styles.heroBlock}>
+      <div className={styles.leftBlock}>
+        <h1>The cheapest flights from your city</h1>
+        <p className={styles.heroDescription}>
+          <strong>toTheTrip</strong> - a service for finding the cheapest
+          flights. Find out where{" "}
+          <strong>the cheapest flights from your city</strong> are without a
+          complicated search. We collect the cheapest flights found by other
+          users from various cities across all destinations and dates.
+        </p>
+      </div>
       <div className={styles.heroForm}>
         <label htmlFor="cityInput" className={styles.heroLabel}>
           I want cheap flights from
@@ -144,20 +154,8 @@ export function HeroBlock() {
         />
 
         <button className={styles.searchButton} onClick={handleSearch}>
-          Search
+          One click
         </button>
-      </div>
-
-      <div className={styles.leftBlock}>
-        <h1>The cheapest flights from your city</h1>
-        <p className={styles.heroDescription}>
-          {" "}
-          <strong>toTheTrip</strong> - a service for finding the cheapest
-          flights. Find out where{" "}
-          <strong>the cheapest flights from your city</strong> are without a
-          complicated search. We collect the cheapest flights found by other
-          users from various cities across all destinations and dates.{" "}
-        </p>
       </div>
     </section>
   );

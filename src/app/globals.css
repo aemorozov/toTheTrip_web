@@ -8,6 +8,7 @@
   --btn-text: #fff;
   --btn-hover: #268eca;
   --nav-bg: #c8fcec;
+  --flights-bg: #272727;
 }
 
 html,
@@ -32,7 +33,12 @@ body {
 }
 
 h1 {
-  font-size: 1.6em;
+  font-size: 1.8em;
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
 }
 
 /* Features Block */

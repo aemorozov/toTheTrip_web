@@ -25,7 +25,7 @@ export default async function TopFlights({ origin }: Props) {
     sorting: "price",
     direct: "true",
     one_way: "false",
-    limit: "10",
+    limit: "3",
     token: process.env.TRAVELPAYOUTS_API_TOKEN as string,
   });
 
@@ -35,8 +35,6 @@ export default async function TopFlights({ origin }: Props) {
       next: { revalidate: 3600 }, // 1 час
     },
   );
-
-  console.log("res: ", res);
 
   if (!res.ok) {
     return <p>Unable to load flights.</p>;
@@ -49,8 +47,8 @@ export default async function TopFlights({ origin }: Props) {
   }
 
   return (
-    <section>
-      <h2>Top 10 cheapest direct flights</h2>
+    <section className={styles.flightSection}>
+      <h2 className={styles.h2}>Round trip cheapest flights</h2>
 
       {json.data.map((flight, index) => (
         <div className={styles.flight} key={index}>

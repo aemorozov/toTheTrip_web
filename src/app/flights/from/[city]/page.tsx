@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import TopFlights from "./TopFlights";
+import TopFlights from "../../../../components/TopFlights/TopFlights";
 import styles from "./page.module.css";
 
 type PageProps = {
@@ -44,13 +44,12 @@ export default async function CityPage({ params }: PageProps) {
 
   return (
     <main className={styles.mainBlock}>
-      <h1>
-        Cheapest flights <br />
-        from {matchedCity.name}
-      </h1>
-
-      <p>Country: {matchedCity.country_name}</p>
-
+      <div className={styles.heroBlock}>
+        <h1>
+          Cheapest flights <br />
+          from {matchedCity.name}
+        </h1>
+      </div>
       {/* ✈ Передаём IATA code */}
       <TopFlights origin={matchedCity.code} />
     </main>

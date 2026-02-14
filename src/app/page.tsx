@@ -3,9 +3,9 @@ import { Metadata } from "next";
 import { HeroBlock } from "../components/HeroBlock/HeroBlock";
 
 export const metadata: Metadata = {
-  title: "Дешёвые авиабилеты по всем направлениям — ToTheTrip",
+  title: "Cheapest flights in one click - ToTheTrip",
   description:
-    "Дешёвые авиабилеты из всех городов по всем направлениям и датам. Ищем самые выгодные перелёты каждый день.",
+    "Cheapest flights in one click. Compare cheap flights, discover top destinations from your city, and find the lowest airfare deals worldwide in seconds.",
 };
 
 export default function HomePage() {

@@ -9,6 +9,12 @@
   background: var(--bg-accent);
 }
 
+.heroForm,
+.leftBlock {
+  max-width: 550px;
+  min-width: 300px;
+}
+
 .heroLabel {
   color: var(--color-primary);
   margin-bottom: 10px;
@@ -34,7 +40,7 @@
     BlinkMacSystemFont,
     sans-serif;
   font-weight: 600;
-
+  cursor: pointer;
   position: relative;
   transition: transform 100ms ease-in-out;
 }
@@ -49,8 +55,7 @@
 }
 
 .leftBlock h1 {
-  margin-top: 25px;
-  font-size: 1.4em;
+  /* font-size: 1.4em; */
   line-height: 1.2;
 }
 
@@ -75,4 +80,11 @@
     BlinkMacSystemFont,
     sans-serif;
   font-weight: 600;
+}
+
+@media screen and (min-width: 880px) {
+  .heroBlock {
+    flex-direction: row;
+    gap: 50px;
+  }
 }

@@ -1,11 +1,11 @@
 :root {
-  --bg-main: #ffffff;
-  --bg-accent: #eaf1fc;
-  --color-primary: #00072c;
-  --color-secondary: #0e192d;
+  --bg-main: #090909;
+  --bg-accent: #005cee;
+  --color-primary: #efffec;
+  --color-secondary: #ffffff;
   --input-text: #101630;
-  --btn-bg: #347ddd;
-  --btn-text: #ffffff;
+  --btn-bg: #f97026;
+  --btn-text: #fff;
   --btn-hover: #268eca;
   --nav-bg: #c8fcec;
 }
@@ -29,6 +29,10 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+h1 {
+  font-size: 1.6em;
 }
 
 /* Features Block */
@@ -188,18 +192,11 @@ body {
   }
 
   .menu {
-    width: 94%;
     height: 60px;
     max-width: 1240px;
     margin: 0 auto;
     display: flex;
     align-items: center;
-    border-radius: 30px;
-    -webkit-box-shadow: 0px 2px 8px -2px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 0px 2px 8px -2px rgba(34, 60, 80, 0.2);
-    box-shadow: 0px 2px 8px -2px rgba(34, 60, 80, 0.2);
-    margin-top: 10px;
-    background-color: beige;
   }
 
   .menuItems {

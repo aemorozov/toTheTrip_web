@@ -20,61 +20,108 @@ function slugify(value: string): string {
 
 export function HeroBlock() {
   const router = useRouter();
+  const [city, setCity] = useState("");
+  const lockedByUser = useRef(false);
 
-  const [city, setCity] = useState<string>("");
-  const lockedByUser = useRef<boolean>(false);
+  const safeSetCity = (value?: string) => {
+    if (!value?.trim()) return;
+    if (lockedByUser.current) return;
 
-  const resolveCityAndRedirect = async () => {
-    if (!city.trim()) return;
+    setCity(value);
+    localStorage.setItem("departure_city", value);
+  };
 
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 1000);
-
+  // 🔎 Запрос в places2 для нормализации
+  const resolveViaPlaces = async (term: string): Promise<string | null> => {
     try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 1000);
+
       const res = await fetch(
-        `/api/places?term=${encodeURIComponent(city)}&locale=en`,
+        `/api/places?term=${encodeURIComponent(term)}&locale=en`,
         { signal: controller.signal },
       );
 
       clearTimeout(timeout);
 
-      if (!res.ok) throw new Error();
+      if (!res.ok) return null;
 
       const data: Place[] = await res.json();
 
-      if (!Array.isArray(data) || data.length === 0) {
-        router.push("/404");
-        return;
-      }
+      if (!Array.isArray(data) || data.length === 0) return null;
 
-      const foundCity =
-        data.find((p) => p.type === "city") ||
-        data.find((p) => p.type === "airport" && p.city_name);
+      // приоритет — city
+      const cityMatch = data.find((p) => p.type === "city");
+      if (cityMatch?.name) return cityMatch.name;
 
-      const finalName =
-        foundCity?.type === "airport" ? foundCity.city_name : foundCity?.name;
+      // fallback — airport
+      const airportMatch = data.find(
+        (p) => p.type === "airport" && p.city_name,
+      );
+      if (airportMatch?.city_name) return airportMatch.city_name;
 
-      if (!finalName) {
-        router.push("/404");
-        return;
-      }
-
-      const slug = slugify(finalName);
-      router.push(`/flights/from/${slug}`);
+      return null;
     } catch {
-      router.push("/404");
+      return null;
     }
   };
 
+  // 🚀 Поиск и редирект
+  const handleSearch = async () => {
+    if (!city.trim()) return;
+
+    const normalized = await resolveViaPlaces(city);
+
+    if (!normalized) {
+      router.push("/404");
+      return;
+    }
+
+    const slug = slugify(normalized);
+    router.push(`/flights/from/${slug}`);
+  };
+
+  // 🌍 Автоопределение при загрузке
   useEffect(() => {
     const cached = localStorage.getItem("departure_city");
-    if (cached) setCity(cached);
+
+    if (cached) {
+      setCity(cached);
+      return;
+    }
+
+    const detectCity = async () => {
+      try {
+        const res = await fetch("/api/geo");
+        const data = await res.json();
+
+        if (data?.city) {
+          const normalized = await resolveViaPlaces(data.city);
+          if (normalized) {
+            safeSetCity(normalized);
+            return;
+          }
+        }
+
+        // fallback по стране
+        if (data?.country) {
+          const normalized = await resolveViaPlaces(data.country);
+          if (normalized) {
+            safeSetCity(normalized);
+          }
+        }
+      } catch {
+        // можно добавить fallback город
+      }
+    };
+
+    detectCity();
   }, []);
 
   return (
     <section className={styles.heroBlock}>
       <div className={styles.heroForm}>
-        <label htmlFor="city" className={styles.heroLabel}>
+        <label htmlFor="cityInput" className={styles.heroLabel}>
           I want cheap flights from
         </label>
 
@@ -91,21 +138,26 @@ export function HeroBlock() {
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              resolveCityAndRedirect();
+              handleSearch();
             }
           }}
         />
 
-        <button
-          className={styles.searchButton}
-          onClick={resolveCityAndRedirect}
-        >
-          Click
+        <button className={styles.searchButton} onClick={handleSearch}>
+          Search
         </button>
       </div>
 
       <div className={styles.leftBlock}>
         <h1>The cheapest flights from your city</h1>
+        <p className={styles.heroDescription}>
+          {" "}
+          <strong>toTheTrip</strong> - a service for finding the cheapest
+          flights. Find out where{" "}
+          <strong>the cheapest flights from your city</strong> are without a
+          complicated search. We collect the cheapest flights found by other
+          users from various cities across all destinations and dates.{" "}
+        </p>
       </div>
     </section>
   );

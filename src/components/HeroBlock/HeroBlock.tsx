@@ -35,14 +35,11 @@ export function HeroBlock() {
   const resolveViaPlaces = async (term: string): Promise<string | null> => {
     try {
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 800);
 
       const res = await fetch(
         `/api/places?term=${encodeURIComponent(term)}&locale=en`,
         { signal: controller.signal },
       );
-
-      clearTimeout(timeout);
 
       if (!res.ok) return null;
 
@@ -78,7 +75,7 @@ export function HeroBlock() {
     }
 
     const slug = slugify(normalized);
-    router.push(`/flights/from/${slug}`);
+    router.push(`/flights-from/${slug}`);
   };
 
   // 🌍 Автоопределение при загрузке

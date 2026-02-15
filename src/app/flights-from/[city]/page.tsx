@@ -1,0 +1,105 @@
+import { notFound } from "next/navigation";
+import TopFlights from "../../../components/TopFlights/TopFlights";
+import styles from "./page.module.css";
+import { cities } from "../../../lib/cities";
+
+type PageProps = {
+  params: Promise<{ city: string }>;
+};
+
+type Place = {
+  type: "city";
+  name: string;
+  code: string;
+  country_name?: string;
+};
+
+function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
+/* =========================
+   ✅ 1. SSG для городов из массива
+========================= */
+
+export async function generateStaticParams() {
+  return Object.keys(cities).map((city) => ({
+    city,
+  }));
+}
+
+/* =========================
+   ✅ 2. Разрешаем динамические slug
+========================= */
+
+export const dynamicParams = true;
+
+/* =========================
+   ✅ 3. Metadata для SEO
+========================= */
+
+export async function generateMetadata({ params }: PageProps) {
+  const { city } = await params;
+  const citySlug = decodeURIComponent(city);
+
+  const cityData = cities[citySlug as keyof typeof cities];
+
+  // если есть в локальном массиве → используем SEO из него
+  if (cityData) {
+    return {
+      title: cityData.title,
+      description: cityData.description,
+    };
+  }
+
+  // если нет — делаем универсальный fallback
+  return {
+    title: `Cheap flights from ${citySlug}`,
+    description: `Find and compare cheap flights from ${citySlug}. Book airline tickets at the best prices.`,
+  };
+}
+
+/* =========================
+   ✅ 4. Основная страница
+========================= */
+
+export default async function CityPage({ params }: PageProps) {
+  const { city } = await params;
+  const citySlug = decodeURIComponent(city);
+
+  const cityData = cities[citySlug as keyof typeof cities];
+
+  const res = await fetch(
+    `https://autocomplete.travelpayouts.com/places2?term=${encodeURIComponent(
+      citySlug,
+    )}&types[]=city&locale=en`,
+    {
+      next: { revalidate: 86400 }, // ISR 24 часа
+    },
+  );
+
+  if (!res.ok) notFound();
+
+  const places: Place[] = await res.json();
+
+  const matchedCity = places.find((p) => slugify(p.name) === citySlug);
+
+  if (!matchedCity) notFound();
+
+  return (
+    <main className={styles.mainBlock}>
+      <div className={styles.heroBlock}>
+        <h1>
+          Cheapest flights <br />
+          from {matchedCity.name}
+        </h1>
+      </div>
+
+      <TopFlights origin={matchedCity.code} />
+    </main>
+  );
+}

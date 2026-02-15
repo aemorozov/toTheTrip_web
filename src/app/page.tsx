@@ -5,7 +5,7 @@ import { HeroBlock } from "../components/HeroBlock/HeroBlock";
 export const metadata: Metadata = {
   title: "Cheapest flights in one click - ToTheTrip",
   description:
-    "Cheapest flights in one click. Compare cheap flights, discover top destinations from your city, and find the lowest airfare deals worldwide in seconds.",
+    "Cheapest flights from your city in one click. Compare cheap flights, discover top destinations from your city, and find the lowest airfare deals worldwide in seconds.",
 };
 
 export default function HomePage() {

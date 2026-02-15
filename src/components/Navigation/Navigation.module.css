@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: start;
   padding: 0 0 0 20px;
-  border-bottom: 1px solid #383838;
+  /* border-bottom: 1px solid #383838; */
   cursor: pointer;
 }
 

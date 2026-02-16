@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { cities } from "../../lib/cities";
 import styles from "./HeroBlock.module.css";
 
 type Place = {
@@ -34,6 +35,25 @@ export function HeroBlock() {
   // 🔎 Запрос в places2 для нормализации
   const resolveViaPlaces = async (term: string): Promise<string | null> => {
     try {
+      const normalizedTerm = term.toLowerCase().trim();
+
+      /* =========================
+       ✅ 1. Проверяем локальный список городов
+    ========================= */
+
+      const localMatch = Object.entries(cities).find(
+        ([slug, city]) =>
+          slug === normalizedTerm || city.name.toLowerCase() === normalizedTerm,
+      );
+
+      if (localMatch) {
+        return localMatch[1].name;
+      }
+
+      /* =========================
+       ✅ 2. Если нет — идём в API
+    ========================= */
+
       const controller = new AbortController();
 
       const res = await fetch(

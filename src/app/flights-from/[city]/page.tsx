@@ -66,6 +66,7 @@ export async function generateMetadata({ params }: PageProps) {
 /* =========================
    ✅ 4. Основная страница
 ========================= */
+let matchedCity: { name: string; code: string };
 
 export default async function CityPage({ params }: PageProps) {
   const { city } = await params;
@@ -73,22 +74,34 @@ export default async function CityPage({ params }: PageProps) {
 
   const cityData = cities[citySlug as keyof typeof cities];
 
-  const res = await fetch(
-    `https://autocomplete.travelpayouts.com/places2?term=${encodeURIComponent(
-      citySlug,
-    )}&types[]=city&locale=en`,
-    {
-      next: { revalidate: 86400 }, // ISR 24 часа
-    },
-  );
+  if (cityData) {
+    matchedCity = {
+      name: cityData.name,
+      code: cityData.code,
+    };
+  } else {
+    const res = await fetch(
+      `https://autocomplete.travelpayouts.com/places2?term=${encodeURIComponent(
+        citySlug,
+      )}&types[]=city&locale=en`,
+      {
+        next: { revalidate: 86400 },
+      },
+    );
 
-  if (!res.ok) notFound();
+    if (!res.ok) notFound();
 
-  const places: Place[] = await res.json();
+    const places: Place[] = await res.json();
 
-  const matchedCity = places.find((p) => slugify(p.name) === citySlug);
+    const found = places.find((p) => slugify(p.name) === citySlug);
 
-  if (!matchedCity) notFound();
+    if (!found) notFound();
+
+    matchedCity = {
+      name: found.name,
+      code: found.code,
+    };
+  }
 
   return (
     <main className={styles.mainBlock}>

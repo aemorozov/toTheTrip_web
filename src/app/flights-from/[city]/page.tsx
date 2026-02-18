@@ -66,9 +66,10 @@ export async function generateMetadata({ params }: PageProps) {
 /* =========================
    ✅ 4. Основная страница
 ========================= */
-let matchedCity: { name: string; code: string };
 
 export default async function CityPage({ params }: PageProps) {
+  const pageGeneratedAt = new Date();
+  let matchedCity: { name: string; code: string };
   const { city } = await params;
   const citySlug = decodeURIComponent(city);
 
@@ -113,6 +114,9 @@ export default async function CityPage({ params }: PageProps) {
       </div>
 
       <TopFlights origin={matchedCity.code} />
+      <div style={{ width: "100%", padding: 20, fontSize: 12, opacity: 0.6 }}>
+        Page generated at: {pageGeneratedAt.toUTCString()}
+      </div>
     </main>
   );
 }

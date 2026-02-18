@@ -18,6 +18,8 @@ type Props = {
 };
 
 export default async function TopFlights({ origin }: Props) {
+  const fetchedAt = new Date();
+
   const params = new URLSearchParams({
     currency: "eur",
     origin,
@@ -61,6 +63,12 @@ export default async function TopFlights({ origin }: Props) {
           Airline: {flight.airline} {flight.flight_number}
         </div>
       ))}
+
+      <div style={{ marginTop: "20px", fontSize: "12px", opacity: 0.7 }}>
+        Flights data last fetched at: {fetchedAt.toUTCString()}
+        <br />
+        Revalidation interval: 1 hour
+      </div>
     </section>
   );
 }

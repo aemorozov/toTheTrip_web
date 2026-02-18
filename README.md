@@ -7,7 +7,7 @@
 </p>
 
 > 🚧 **Project Status: Early Development (≈10% complete)**  
-> Telegram bot + channels part: https://github.com/aemorozov/toTheTrip<br>
+> Telegram bot + channels part: https://github.com/aemorozov/toTheTrip_telegram-bot<br>
 > The foundation is built. Core architecture is in place. Active development in progress.
 
 ---

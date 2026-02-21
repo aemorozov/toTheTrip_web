@@ -48,7 +48,7 @@ export default function OneWayFlights({ origin }: Props) {
 
   return (
     <section className={styles.flightSection}>
-      <h2 className={styles.h2}>Round trip cheapest flights</h2>
+      <h2 className={styles.h2}>One way cheapest flights</h2>
       {flights.map((flight, index) => (
         <div className={styles.flight} key={index}>
           <div className={styles.flightsInfo}>

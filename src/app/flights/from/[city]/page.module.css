@@ -8,3 +8,16 @@
   color: var(--color-primary);
   background: var(--bg-accent);
 }
+
+.maxWidth960 {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.title {
+  display: block;
+  max-width: 470px;
+  margin: 0;
+  padding: 0 0 0 20px;
+}

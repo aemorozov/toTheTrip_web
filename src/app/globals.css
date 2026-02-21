@@ -8,7 +8,7 @@
   --btn-text: #fff;
   --btn-hover: #268eca;
   --nav-bg: #c8fcec;
-  --flights-bg: #272727;
+  --flights-bg: #1b1b1b;
 }
 
 html,
@@ -33,7 +33,7 @@ body {
 }
 
 h1 {
-  font-size: 1.8em;
+  font-size: 2.5em;
   margin: 0;
 }
 

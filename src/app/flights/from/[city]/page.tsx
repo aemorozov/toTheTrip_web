@@ -1,7 +1,10 @@
 import { notFound } from "next/navigation";
-import TopFlights from "../../../components/TopFlights/TopFlights";
+import RoundTripFlights from "../../../../components/RoundTripFlights/RoundTripFlights";
 import styles from "./page.module.css";
-import { cities } from "../../../lib/cities";
+import { cities } from "../../../../lib/cities";
+import OneWayFlights from "../../../../components/OneWayFlights/OneWayFlights";
+
+export const dynamic = "force-static";
 
 type PageProps = {
   params: Promise<{ city: string }>;
@@ -48,6 +51,11 @@ export async function generateMetadata({ params }: PageProps) {
 
   const cityData = cities[citySlug as keyof typeof cities];
 
+  function ucFirst(str) {
+    if (!str) return str; // если строка пустая, возвращаем её же
+    return str[0].toUpperCase() + str.slice(1);
+  }
+
   // если есть в локальном массиве → используем SEO из него
   if (cityData) {
     return {
@@ -59,7 +67,7 @@ export async function generateMetadata({ params }: PageProps) {
   // если нет — делаем универсальный fallback
   return {
     title: `Cheap flights from ${citySlug}`,
-    description: `Find and compare cheap flights from ${citySlug}. Book airline tickets at the best prices.`,
+    description: `Find and compare cheap flights from ${ucFirst(citySlug)}. Book airline tickets at the best prices.`,
   };
 }
 
@@ -107,15 +115,19 @@ export default async function CityPage({ params }: PageProps) {
   return (
     <main className={styles.mainBlock}>
       <div className={styles.heroBlock}>
-        <h1>
-          Cheapest flights <br />
-          from {matchedCity.name}
-        </h1>
+        <div className={styles.maxWidth960}>
+          <h1 className={styles.title}>
+            Cheapest flights <br />
+            from {matchedCity.name}
+          </h1>
+        </div>
       </div>
-
-      <TopFlights origin={matchedCity.code} />
-      <div style={{ width: "100%", padding: 20, fontSize: 12, opacity: 0.6 }}>
-        Page generated at: {pageGeneratedAt.toUTCString()}
+      <div className={styles.maxWidth960}>
+        <RoundTripFlights origin={matchedCity.code} />
+        <OneWayFlights origin={matchedCity.code} />
+        <div style={{ width: "100%", padding: 20, fontSize: 12, opacity: 0.6 }}>
+          Page generated at: {pageGeneratedAt.toUTCString()}
+        </div>
       </div>
     </main>
   );

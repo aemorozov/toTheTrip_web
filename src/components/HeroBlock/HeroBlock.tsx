@@ -95,7 +95,7 @@ export function HeroBlock() {
     }
 
     const slug = slugify(normalized);
-    router.push(`/flights-from/${slug}`);
+    router.push(`/flights/from/${slug}`);
   };
 
   // 🌍 Автоопределение при загрузке
@@ -137,42 +137,44 @@ export function HeroBlock() {
 
   return (
     <section className={styles.heroBlock}>
-      <div className={styles.leftBlock}>
-        <h1>The cheapest flights from your city</h1>
-        <p className={styles.heroDescription}>
-          <strong>toTheTrip</strong> - a service for finding the cheapest
-          flights. Find out where{" "}
-          <strong>the cheapest flights from your city</strong> are without a
-          complicated search. We collect the cheapest flights found by other
-          users from various cities across all destinations and dates.
-        </p>
-      </div>
-      <div className={styles.heroForm}>
-        <label htmlFor="cityInput" className={styles.heroLabel}>
-          I want cheap flights from
-        </label>
+      <div className={styles.insideHeroBlock}>
+        <div className={styles.leftBlock}>
+          <h1>The cheapest flights from your city</h1>
+          <p className={styles.heroDescription}>
+            <strong>toTheTrip</strong> - a service for finding the cheapest
+            flights. Find out where{" "}
+            <strong>the cheapest flights from your city</strong> are without a
+            complicated search. We collect the cheapest flights found by other
+            users from various cities across all destinations and dates.
+          </p>
+        </div>
+        <div className={styles.heroForm}>
+          <label htmlFor="cityInput" className={styles.heroLabel}>
+            I want cheap flights from
+          </label>
 
-        <input
-          id="cityInput"
-          className={styles.heroInput}
-          value={city}
-          placeholder="City of departure"
-          onChange={(e) => {
-            lockedByUser.current = true;
-            const value = e.target.value;
-            setCity(value);
-            localStorage.setItem("departure_city", value);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleSearch();
-            }
-          }}
-        />
+          <input
+            id="cityInput"
+            className={styles.heroInput}
+            value={city}
+            placeholder="City of departure"
+            onChange={(e) => {
+              lockedByUser.current = true;
+              const value = e.target.value;
+              setCity(value);
+              localStorage.setItem("departure_city", value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
+          />
 
-        <button className={styles.searchButton} onClick={handleSearch}>
-          One click
-        </button>
+          <button className={styles.searchButton} onClick={handleSearch}>
+            One click
+          </button>
+        </div>
       </div>
     </section>
   );

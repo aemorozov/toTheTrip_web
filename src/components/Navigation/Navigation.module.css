@@ -6,6 +6,8 @@
   align-items: center;
   justify-content: start;
   padding: 0 0 0 20px;
+  max-width: 1024px;
+  margin: 0 auto;
   /* border-bottom: 1px solid #383838; */
   cursor: pointer;
 }
@@ -31,4 +33,11 @@
 
 .link {
   text-decoration: none;
+}
+
+.logoSpan {
+  color: rgb(164, 154, 140);
+  font-weight: 100;
+  display: inline-block;
+  font-size: 0.5em;
 }

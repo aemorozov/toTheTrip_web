@@ -6,13 +6,6 @@ export const cities = {
     description:
       "Find cheap flights from Saint Petersburg (LED) to worldwide destinations. Compare airlines, discover the best deals, and book tickets online at the lowest prices.",
   },
-  moscow: {
-    code: "MOW",
-    name: "Moscow",
-    title: "Cheap Flights from Moscow | toTheTrip.app",
-    description:
-      "Search and compare cheap flights from Moscow (MOW). Explore top destinations, check airfare deals, and book affordable airline tickets in minutes.",
-  },
   bucharest: {
     code: "BUH",
     name: "Bucharest",

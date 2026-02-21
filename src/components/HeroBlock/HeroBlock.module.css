@@ -1,18 +1,24 @@
 .heroBlock {
   width: 100%;
-  flex-direction: column;
-  gap: 10px;
-  padding: 30px 20px;
-  display: flex;
-  justify-content: center;
   color: var(--color-primary);
   background: var(--bg-accent);
 }
 
+.insideHeroBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px 20px;
+  justify-content: center;
+  max-width: 960px;
+}
+
 .heroForm,
 .leftBlock {
-  max-width: 550px;
+  max-width: 450px;
   min-width: 300px;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .heroLabel {
@@ -61,7 +67,7 @@
 
 .heroDescription {
   max-width: 600px;
-  font-size: 0.9em;
+  font-size: 0.7em;
   font-weight: 300;
 }
 
@@ -83,8 +89,13 @@
 }
 
 @media screen and (min-width: 880px) {
-  .heroBlock {
+  .insideHeroBlock {
     flex-direction: row;
     gap: 50px;
+    margin: 0 auto;
+  }
+
+  .heroLabel {
+    font-size: 2em;
   }
 }

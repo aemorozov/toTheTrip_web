@@ -6,7 +6,9 @@ export default function Navigation() {
     <Link href={"/"} className={styles.link}>
       <nav className={styles.navigation}>
         <div className={styles.logoText}>
-          <p className={styles.logo}>toTheTrip.app</p>
+          <p className={styles.logo}>
+            toTheTrip.app <sup className={styles.logoSpan}>Alpha version</sup>
+          </p>
           <p className={styles.description}>Cheapest flights in one click.</p>
         </div>
       </nav>

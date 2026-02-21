@@ -10,6 +10,8 @@ type Flight = {
   price: number;
   airline: string;
   flight_number: number;
+  destinationCity?: string;
+  originCity?: string;
 };
 
 type ApiResponse = {
@@ -51,9 +53,10 @@ export default function RoundTripFlights({ origin }: Props) {
       {flights.map((flight, index) => (
         <div className={styles.flight} key={index}>
           <div className={styles.flightsInfo}>
-            <div>
+            <div className={styles.cities}>
               <strong>
-                {origin} ⇄ {flight.destination}
+                {flight.originCity || origin} ⇄{" "}
+                {flight.destinationCity || flight.destination}
               </strong>
             </div>
             <div>

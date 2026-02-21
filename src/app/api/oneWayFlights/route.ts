@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { resolveCitiesBatch } from "../../../lib/resolveCitiesBatch";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -23,7 +24,21 @@ export async function GET(req: Request) {
     `https://api.travelpayouts.com/aviasales/v3/prices_for_dates?${params}`,
   );
 
-  const data = await res.json();
+  const json = await res.json();
 
-  return NextResponse.json(data);
+  if (!json?.data) {
+    return NextResponse.json({ data: [] });
+  }
+
+  const codes = [origin, ...json.data.map((f: any) => f.destination)];
+
+  const cityMap = await resolveCitiesBatch(codes);
+
+  const enrichedFlights = json.data.map((flight: any) => ({
+    ...flight,
+    originCity: cityMap[origin] || origin,
+    destinationCity: cityMap[flight.destination] || flight.destination,
+  }));
+
+  return NextResponse.json({ data: enrichedFlights });
 }

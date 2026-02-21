@@ -16,6 +16,7 @@
 
 .h2 {
   margin-bottom: 20px;
+  color: var(--btn-bg);
 }
 
 .flightsInfo {
@@ -25,7 +26,7 @@
 }
 
 .flightPrice {
-  font-size: 3em;
+  font-size: 2em;
   font-weight: 300;
   display: flex;
   justify-content: center;
@@ -34,6 +35,6 @@
 }
 
 .cities {
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 500;
 }

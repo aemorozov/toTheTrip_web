@@ -54,7 +54,7 @@ export default function OneWayFlights({ origin }: Props) {
           <div className={styles.flightsInfo}>
             <div className={styles.cities}>
               <strong>
-                {flight.originCity || origin} →{" "}
+                {/* {flight.originCity || origin} →{" "} */}
                 {flight.destinationCity || flight.destination}
               </strong>
             </div>

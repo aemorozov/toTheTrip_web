@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
-import RoundTripFlights from "../../../../components/RoundTripFlights/RoundTripFlights";
+import FlightsMainBlock from "../../../../components/FlightsMainBlock/FlightsMainBlock";
 import styles from "./page.module.css";
 import { cities } from "../../../../lib/cities";
-import OneWayFlights from "../../../../components/OneWayFlights/OneWayFlights";
 
 export const dynamic = "force-static";
 
@@ -123,11 +122,8 @@ export default async function CityPage({ params }: PageProps) {
         </div>
       </div>
       <div className={styles.maxWidth960}>
-        <RoundTripFlights origin={matchedCity.code} />
-        <OneWayFlights origin={matchedCity.code} />
-        <div style={{ width: "100%", padding: 20, fontSize: 12, opacity: 0.6 }}>
-          Page generated at: {pageGeneratedAt.toUTCString()}
-        </div>
+        <FlightsMainBlock origin={matchedCity.code} oneWay={false} />
+        <FlightsMainBlock origin={matchedCity.code} oneWay={true} />
       </div>
     </main>
   );

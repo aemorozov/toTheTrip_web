@@ -1,5 +1,5 @@
 import styles from "./FlightBlock.module.css";
-const { DateTime } = require("luxon");
+import { DateTime } from "luxon";
 
 export default function FlightBlock({ flight }) {
   const destination_iata = flight.destination;

@@ -34,3 +34,8 @@
 .infoText {
   font-size: 0.8em;
 }
+
+.link {
+  text-decoration: none;
+  color: var(--btn-text);
+}

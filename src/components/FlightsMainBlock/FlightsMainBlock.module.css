@@ -11,6 +11,8 @@
   min-width: 110%;
   transform: translateX(-5%);
   padding: 0 20px;
+  scrollbar-width: thin;
+  scrollbar-color: #2d2d2d var(--bg-main);
 }
 
 .h2 {
@@ -21,4 +23,11 @@
 
 .h2orange {
   color: var(--btn-bg);
+}
+
+@media screen and (min-width: 640px) {
+  .flightSection {
+    min-width: 100%;
+    transform: none;
+  }
 }

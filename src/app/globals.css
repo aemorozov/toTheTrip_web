@@ -142,10 +142,6 @@ h2 {
   transition: transform 0.2s ease;
 }
 
-.squareCard:hover {
-  /* transform: translateY(-5px); */
-}
-
 .imgPlaceholder {
   font-size: 2rem;
   margin-bottom: 8px;

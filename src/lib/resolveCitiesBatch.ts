@@ -33,9 +33,8 @@ export async function resolveCitiesBatch(codes: string[]): Promise<CityMap> {
   try {
     const json1 = await redisRequest("get", "airports2");
     airports2 = json1?.result ? JSON.parse(json1.result) : {};
-
     const json2 = await redisRequest("get", "airports");
-    airports = json2?.result ? JSON.parse(json2.result) : {};
+    airports = json2?.result ? JSON.parse(json1.result) : {};
   } catch (err) {
     console.warn("⚠️ Redis read error:", err);
   }
@@ -69,7 +68,12 @@ export async function resolveCitiesBatch(codes: string[]): Promise<CityMap> {
             data.find((p: any) => p.type === "airport")?.city_name ||
             null;
 
-          return [code, city];
+          const countryCode =
+            data.find((p: any) => p.type === "city")?.country_code || null;
+
+          const finalCity = `${city}, ${countryCode}`;
+
+          return [code, finalCity];
         } catch {
           return [code, null];
         }
@@ -77,12 +81,12 @@ export async function resolveCitiesBatch(codes: string[]): Promise<CityMap> {
     );
 
     // 🔹 4. Обновляем локальные объекты
-    resolvedMissing.forEach(([code, city]) => {
-      cityMap[code] = city;
+    resolvedMissing.forEach(([code, finalCity]) => {
+      cityMap[code] = finalCity;
 
-      if (city) {
-        airports2[code] = city;
-        airports[city] = code;
+      if (finalCity) {
+        airports2[code] = finalCity;
+        airports[finalCity] = code;
       }
     });
 

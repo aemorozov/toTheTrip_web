@@ -139,7 +139,10 @@ export function HeroBlock() {
     <section className={styles.heroBlock}>
       <div className={styles.insideHeroBlock}>
         <div className={styles.leftBlock}>
-          <h1>The cheapest flights from your city</h1>
+          <h1>
+            Cheapest flights
+            <br /> from your city
+          </h1>
           <p className={styles.heroDescription}>
             <strong>toTheTrip</strong> - a service for finding the cheapest
             flights. Find out where{" "}

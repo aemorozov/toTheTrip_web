@@ -48,17 +48,16 @@ export default function OneWayFlights({ origin }: Props) {
 
   return (
     <section className={styles.flightSection}>
-      <h2 className={styles.h2}>One way cheapest flights</h2>
+      <h2 className={styles.h2}>
+        <span className={styles.h2orange}>One way</span> cheapest flights
+      </h2>
       {flights.map((flight, index) => (
         <div className={styles.flight} key={index}>
           <div className={styles.flightsInfo}>
             <div className={styles.cities}>
-              <strong>
-                {/* {flight.originCity || origin} →{" "} */}
-                {flight.destinationCity || flight.destination}
-              </strong>
+              <strong>{flight.destinationCity || flight.destination}</strong>
             </div>
-            <div>
+            <div className={styles.infoText}>
               Departure: {new Date(flight.departure_at).toLocaleDateString()}
             </div>
           </div>

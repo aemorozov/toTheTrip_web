@@ -1,10 +1,13 @@
 .flightSection {
   padding: 20px;
+  max-height: 250px;
+  overflow: hidden;
+  transition: 0.3s ease;
 }
 
 .flight {
   width: 100%;
-  min-height: 80px;
+  min-height: 70px;
   margin: 10px 0;
   background-color: var(--flights-bg);
   border-radius: 10px;
@@ -15,14 +18,13 @@
 }
 
 .h2 {
-  margin-bottom: 20px;
-  color: var(--btn-bg);
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: 1.2em;
 }
 
-.flightsInfo {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.h2orange {
+  color: var(--btn-bg);
 }
 
 .flightPrice {
@@ -35,6 +37,16 @@
 }
 
 .cities {
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 500;
+}
+
+.flightsInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.infoText {
+  font-size: 0.8em;
 }

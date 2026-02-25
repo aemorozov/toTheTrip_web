@@ -117,7 +117,7 @@ export default async function CityPage({ params }: PageProps) {
       <div className={styles.heroBlock}>
         <div className={styles.maxWidth960}>
           <h1 className={styles.title}>
-            The cheapest flights <br />
+            Cheapest flights <br />
             from {matchedCity.name}
           </h1>
         </div>

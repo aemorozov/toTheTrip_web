@@ -7,7 +7,7 @@ export default function Navigation() {
       <nav className={styles.navigation}>
         <div className={styles.logoText}>
           <p className={styles.logo}>
-            toTheTrip.app <sup className={styles.logoSpan}>Alpha version</sup>
+            toTheTrip.app <sup className={styles.logoSpan}>MVP</sup>
           </p>
           <p className={styles.description}>Cheapest flights in one click.</p>
         </div>

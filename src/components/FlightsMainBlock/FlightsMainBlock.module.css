@@ -25,9 +25,37 @@
   color: var(--btn-bg);
 }
 
+.emptyFlight {
+  width: 100%;
+  min-height: 100px;
+  min-width: 260px;
+  margin: 10px 0;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  /* База */
+  background: linear-gradient(90deg, #262650 0%, #31316b 50%, #262650 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+/* Анимация движения */
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
 @media screen and (min-width: 640px) {
   .flightSection {
     min-width: 100%;
     transform: none;
+    padding: 0;
   }
 }

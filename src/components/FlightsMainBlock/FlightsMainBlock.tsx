@@ -33,6 +33,7 @@ export default function FlightsMainBlock({ origin, oneWay }: Props) {
     : "/api/roundTripFlights?origin=";
 
   useEffect(() => {
+    setFlights([]);
     fetch(`${link}` + `${origin}`)
       .then((res) => res.json())
       .then((data: ApiResponse) => {
@@ -42,10 +43,22 @@ export default function FlightsMainBlock({ origin, oneWay }: Props) {
       .catch(() => setLoading(false));
   }, [origin]);
 
+  const emptyFlights = [1, 2, 3, 4];
+
   if (loading) {
     return (
       <section className={styles.flightBlock}>
-        <p>Loading data...</p>
+        <h2 className={styles.h2}>
+          <span className={styles.h2orange}>
+            {oneWay ? "One way" : "Round trip"}
+          </span>{" "}
+          cheapest flights
+        </h2>
+        <div className={styles.flightSection}>
+          {emptyFlights.map((index) => (
+            <div className={styles.emptyFlight} key={index}></div>
+          ))}
+        </div>
       </section>
     );
   }

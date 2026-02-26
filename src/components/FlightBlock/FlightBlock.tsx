@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./FlightBlock.module.css";
 import { DateTime } from "luxon";
 
@@ -35,7 +36,7 @@ export default function FlightBlock({ flight }) {
   const link = `https://tp.media/r?marker=59890&trs=443711&p=4114&u=${encodedUrl}&campaign_id=100`;
 
   return (
-    <a href={link} target="_blank" className={styles.link}>
+    <Link href={link} target="_blank" className={styles.link}>
       <div className={styles.flight}>
         <div className={styles.flightsInfo}>
           <div className={styles.cities}>
@@ -59,6 +60,6 @@ export default function FlightBlock({ flight }) {
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

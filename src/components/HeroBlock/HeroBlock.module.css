@@ -2,6 +2,7 @@
   width: 100%;
   color: var(--color-primary);
   background: var(--bg-accent);
+  padding: 0 20px;
 }
 
 .insideHeroBlock {

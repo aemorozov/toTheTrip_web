@@ -239,24 +239,33 @@ async function searchWeekendTrips(
 
     /* 5️⃣ FILTER */
 
-    return flights.filter((t) => {
-      const depart = DateTime.fromISO(t.departure_at, { setZone: true });
-      const ret = DateTime.fromISO(t.return_at, { setZone: true });
+    console.log(flights);
 
-      if (!depart.isValid || !ret.isValid) return false;
+    return flights
+      .filter((t) => {
+        const depart = DateTime.fromISO(t.departure_at, { setZone: true });
+        const ret = DateTime.fromISO(t.return_at, { setZone: true });
 
-      const durationHours = ret.diff(depart, "hours").hours;
-      const durationOk = durationHours >= 26 && durationHours <= 96;
+        if (!depart.isValid || !ret.isValid) return false;
 
-      const weekendTrip =
-        isDepartInWeekendWindow(depart) &&
-        isReturnInWeekendWindow(ret) &&
-        isWeekRelationOk(depart, ret);
+        const durationHours = ret.diff(depart, "hours").hours;
+        const durationOk = durationHours >= 26 && durationHours <= 96;
 
-      const holidayTrip = isHolidayTrip(depart, ret);
+        const weekendTrip =
+          isDepartInWeekendWindow(depart) &&
+          isReturnInWeekendWindow(ret) &&
+          isWeekRelationOk(depart, ret);
 
-      return durationOk && (weekendTrip || holidayTrip);
-    });
+        const holidayTrip = isHolidayTrip(depart, ret);
+
+        return durationOk && (weekendTrip || holidayTrip);
+      })
+      .sort((a, b) => {
+        const aDate = DateTime.fromISO(a.departure_at);
+        const bDate = DateTime.fromISO(b.departure_at);
+
+        return aDate.toMillis() - bDate.toMillis();
+      });
   } catch (error) {
     console.error("searchWeekendTrips error:", error);
     return [];

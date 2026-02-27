@@ -122,8 +122,12 @@ export default async function CityPage({ params }: PageProps) {
         </div>
       </div>
       <div className={styles.maxWidth960}>
-        <FlightsMainBlock origin={matchedCity.code} oneWay={false} />
-        <FlightsMainBlock origin={matchedCity.code} oneWay={true} />
+        <FlightsMainBlock origin={matchedCity.code} parameters={"roundTrip"} />
+        <FlightsMainBlock origin={matchedCity.code} parameters={"oneWay"} />
+        <FlightsMainBlock
+          origin={matchedCity.code}
+          parameters={"weekendTrips"}
+        />
       </div>
     </main>
   );

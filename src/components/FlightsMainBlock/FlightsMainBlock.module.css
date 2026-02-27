@@ -35,14 +35,15 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  /* База */
-  background: linear-gradient(90deg, #262650 0%, #31316b 50%, #262650 100%);
+  background: linear-gradient(90deg, #0f0f1f 0%, #212148 50%, #0f0f1f 100%);
   background-size: 200% 100%;
   animation: shimmer 1.4s ease-in-out infinite;
 }
 
-/* Анимация движения */
+.noFlights {
+  padding: 20px;
+}
+
 @keyframes shimmer {
   0% {
     background-position: 200% 0;

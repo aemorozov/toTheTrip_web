@@ -43,12 +43,12 @@ export default function FlightBlock({ flight }) {
             <strong>{flight.destinationCity || flight.destination}</strong>
           </div>
           <div className={styles.infoText}>
-            Dep: {departure_date}, {departure_time}{" "}
+            ➡️ {departure_date}, {departure_time}{" "}
             {depart_transfers ? ` (${depart_transfers})` : null}
           </div>
           {flight.return_at ? (
             <div className={styles.infoText}>
-              Ret: {return_date}, {return_time}{" "}
+              ⬅️ {return_date}, {return_time}{" "}
               {return_transfers ? `${return_transfers}` : null}
             </div>
           ) : null}

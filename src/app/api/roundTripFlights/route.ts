@@ -16,7 +16,7 @@ export async function GET(req: Request) {
     sorting: "price",
     direct: "true",
     one_way: "false",
-    limit: "10",
+    limit: "1000",
     token: process.env.TRAVELPAYOUTS_API_TOKEN as string,
   });
 

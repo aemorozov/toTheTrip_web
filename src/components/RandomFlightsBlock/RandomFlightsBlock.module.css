@@ -1,5 +1,5 @@
 .flightBlock {
-  padding: 20px 20px 50px;
+  padding: 20px 20px 0 20px;
   max-width: 960px;
   margin: 0 auto;
 }
@@ -7,18 +7,20 @@
 .flightSection {
   max-height: 210px;
   transition: all 0.3s;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow: auto;
   display: flex;
   gap: 10px;
   min-width: 110%;
+  max-width: 960px;
   transform: translateX(-5%);
-  position: relative;
+  padding: 0 20px;
+  scrollbar-width: thin;
+  scrollbar-color: #2d2d2d var(--bg-main);
 }
 
 .h2 {
   margin-bottom: 10px;
-  color: #fff;
+  color: var(--text-main);
   font-size: 1.2em;
 }
 
@@ -58,5 +60,6 @@
   .flightSection {
     min-width: 100%;
     transform: none;
+    padding: 0;
   }
 }

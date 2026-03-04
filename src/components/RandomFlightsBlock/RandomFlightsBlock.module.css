@@ -1,27 +1,39 @@
 .flightBlock {
-  padding: 20px 20px 0 20px;
-}
-
-.flightBlock:last-of-type {
-  padding: 20px 20px 50px 20px;
+  padding: 20px 20px 50px;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .flightSection {
   max-height: 210px;
   transition: all 0.3s;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   display: flex;
   gap: 10px;
   min-width: 110%;
   transform: translateX(-5%);
   padding: 0 20px;
-  scrollbar-width: thin;
-  scrollbar-color: #2d2d2d var(--bg-main);
+  position: relative;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0px,
+    #090909 5px,
+    #090909 calc(100% - 5px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0px,
+    #090909 5px,
+    #090909 calc(100% - 5px),
+    transparent 100%
+  );
 }
 
 .h2 {
   margin-bottom: 10px;
-  color: var(--text-main);
+  color: #fff;
   font-size: 1.2em;
 }
 
@@ -61,6 +73,5 @@
   .flightSection {
     min-width: 100%;
     transform: none;
-    padding: 0;
   }
 }

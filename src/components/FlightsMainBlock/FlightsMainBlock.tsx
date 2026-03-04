@@ -239,8 +239,6 @@ async function searchWeekendTrips(
 
     /* 5️⃣ FILTER */
 
-    console.log(flights);
-
     return flights
       .filter((t) => {
         const depart = DateTime.fromISO(t.departure_at, { setZone: true });

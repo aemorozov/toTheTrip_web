@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
-import { Rubik } from "next/font/google";
 import "./globals.css";
 import Navigation from "../components/Navigation/Navigation";
-
-const rubik = Rubik({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={rubik.className}>
+      <body>
         <header>
           <Navigation />
         </header>

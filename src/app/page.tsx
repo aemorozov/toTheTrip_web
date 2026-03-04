@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Metadata } from "next";
 import { HeroBlock } from "../components/HeroBlock/HeroBlock";
+import { RandomFlightsBlock } from "../components/RandomFlightsBlock/RandomFlightsBlock";
 
 export const metadata: Metadata = {
   title: "Cheapest flights in one click - ToTheTrip",
@@ -11,22 +11,9 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* <header>
-        <div className="menu">
-          <div className="logo">
-            <span>toTheTrip</span>
-          </div>
-          <div>
-            <ul className="menuItems">
-              <li>Home</li>
-              <li>Notes</li>
-              <li>Contacts</li>
-            </ul>
-          </div>
-        </div>
-      </header> */}
       <main>
         <HeroBlock />
+        <RandomFlightsBlock />
 
         {/* <section className="squareCardsBlock">
           <h2>Популярные направления в этом месяце</h2>

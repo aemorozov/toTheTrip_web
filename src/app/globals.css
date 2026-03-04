@@ -1,8 +1,9 @@
 :root {
   --bg-main: #090909;
+  --text-main: #fff;
   --bg-accent: #005cee;
+  --text-accent: #ffffff;
   --color-primary: #efffec;
-  --color-secondary: #ffffff;
   --input-text: #101630;
   --btn-bg: #f97026;
   --btn-text: #fff;

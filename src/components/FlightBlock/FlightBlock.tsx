@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./FlightBlock.module.css";
 import { DateTime } from "luxon";
 
-export default function FlightBlock({ flight }) {
+export default function FlightBlock({ flight, origin = null }) {
   const destination_iata = flight.destination;
   const departure_date = DateTime.fromISO(flight.departure_at, {
     setZone: true,
@@ -40,6 +40,12 @@ export default function FlightBlock({ flight }) {
       <div className={styles.flight}>
         <div className={styles.flightsInfo}>
           <div className={styles.cities}>
+            {origin ? (
+              <strong>
+                {origin} ⮂
+                <br />
+              </strong>
+            ) : null}
             <strong>{flight.destinationCity || flight.destination}</strong>
           </div>
           <div className={styles.infoText}>

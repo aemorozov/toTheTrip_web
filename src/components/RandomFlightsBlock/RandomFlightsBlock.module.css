@@ -1,5 +1,5 @@
 .flightBlock {
-  padding: 20px 20px 0 20px;
+  padding: 20px 20px 50px 20px;
   max-width: 960px;
   margin: 0 auto;
 }
@@ -21,7 +21,7 @@
 .h2 {
   margin-bottom: 10px;
   color: var(--text-main);
-  font-size: 1.2em;
+  font-size: 1.4em;
 }
 
 .h2orange {

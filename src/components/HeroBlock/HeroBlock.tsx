@@ -147,8 +147,7 @@ export function HeroBlock() {
             <strong>toTheTrip</strong> - a service for finding the cheapest
             flights. Find out where{" "}
             <strong>the cheapest flights from your city</strong> are without a
-            complicated search. We collect the cheapest flights found by other
-            users from various cities across all destinations and dates.
+            complicated search.
           </p>
         </div>
         <div className={styles.heroForm}>

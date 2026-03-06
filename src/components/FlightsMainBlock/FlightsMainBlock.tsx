@@ -97,7 +97,7 @@ export default function FlightsMainBlock({ origin, parameters }: Props) {
   const limitedFlights = flights.slice(0, 10);
 
   return (
-    <section className={styles.flightBlock}>
+    <div className={styles.flightBlock}>
       <h2 className={styles.h2}>
         {oneWay ? (
           <>
@@ -120,7 +120,7 @@ export default function FlightsMainBlock({ origin, parameters }: Props) {
           <FlightBlock flight={flight} key={index} />
         ))}
       </div>
-    </section>
+    </div>
   );
 }
 

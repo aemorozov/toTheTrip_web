@@ -121,14 +121,14 @@ export default async function CityPage({ params }: PageProps) {
           </h1>
         </div>
       </div>
-      <div className={styles.maxWidth960}>
+      <section className={styles.maxWidth960}>
         <FlightsMainBlock origin={matchedCity.code} parameters={"roundTrip"} />
         <FlightsMainBlock origin={matchedCity.code} parameters={"oneWay"} />
         <FlightsMainBlock
           origin={matchedCity.code}
           parameters={"weekendTrips"}
         />
-      </div>
+      </section>
     </main>
   );
 }

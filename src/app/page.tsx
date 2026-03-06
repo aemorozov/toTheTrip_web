@@ -1,89 +1,51 @@
 import { Metadata } from "next";
 import { HeroBlock } from "../components/HeroBlock/HeroBlock";
 import { RandomFlightsBlock } from "../components/RandomFlightsBlock/RandomFlightsBlock";
+import styles from "./page.module.css";
+import { homeMetadata, homeStructuredData } from "../lib/seo";
 
-export const metadata: Metadata = {
-  title: "Cheapest flights in one click - ToTheTrip",
-  description:
-    "Cheapest flights from your city in one click. Compare cheap flights, discover top destinations from your city, and find the lowest airfare deals worldwide in seconds.",
-};
+export const metadata: Metadata = homeMetadata;
 
 export default function HomePage() {
   return (
     <>
-      <main>
+      <main className={styles.main}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(homeStructuredData),
+          }}
+        />
         <HeroBlock />
         <RandomFlightsBlock />
 
-        {/* <section className="squareCardsBlock">
-          <h2>Популярные направления в этом месяце</h2>
-          <div className="squareCardsGrid">
-            <div className="squareCard">
-              <div className="imgPlaceholder">🏙️</div>
-              <span>Москва</span>
-            </div>
-            <div className="squareCard">
-              <div className="imgPlaceholder">🌉</div>
-              <span>Санкт-Петербург</span>
-            </div>
-            <div className="squareCard">
-              <div className="imgPlaceholder">🏰</div>
-              <span>Казань</span>
-            </div>
-            <div className="squareCard">
-              <div className="imgPlaceholder">🏖️</div>
-              <span>Сочи</span>
-            </div>
-            <div className="squareCard">
-              <div className="imgPlaceholder">🏔️</div>
-              <span>Екатеринбург</span>
-            </div>
-            <div className="squareCard">
-              <div className="imgPlaceholder">✈️</div>
-              <span>Минск</span>
-            </div>
+        <section className={styles.seoSection}>
+          <h2>
+            How to find <span className={styles.orange}>cheap flights</span>{" "}
+            faster?
+          </h2>
+          <div className={styles.contentBlock}>
+            <p>
+              toTheTrip helps travelers quickly discover the cheapest flights
+              available from their city. Instead of searching dozens of routes
+              and dates manually, you can explore real flight deals that were
+              our system already found .
+            </p>
+
+            <p>
+              Simply choose your departure city and browse destinations where
+              cheap airline tickets are currently available. The platform
+              highlights the lowest prices, making it easy to find affordable
+              weekend trips, budget travel ideas, and spontaneous getaways.
+            </p>
+
+            <p>
+              Whether you're looking for a quick city break or planning your
+              next trip, ToTheTrip lets you discover cheap flights, explore new
+              destinations, and find low airfare deals in seconds.
+            </p>
           </div>
         </section>
-
-        <section className="featuresBlock">
-          <h2>Почему выбирают нас</h2>
-          <div className="featuresGrid">
-            <div className="featureCard">
-              <h3>Быстрый поиск</h3>
-              <p>Находите лучшие предложения за секунды.</p>
-            </div>
-            <div className="featureCard">
-              <h3>Актуальные цены</h3>
-              <p>Данные обновляются в реальном времени.</p>
-            </div>
-            <div className="featureCard">
-              <h3>Простота бронирования</h3>
-              <p>Бронируйте билеты прямо на сайте без сложностей.</p>
-            </div>
-            <div className="featureCard">
-              <h3>Поддержка 24/7</h3>
-              <p>Всегда готовы помочь с любым вопросом.</p>
-            </div>
-          </div>
-        </section>
-
-        <section className="popularDestinations">
-          <h2>Популярные направления</h2>
-          <div className="destinationsGrid">
-            <div className="destinationCard">Москва</div>
-            <div className="destinationCard">Санкт-Петербург</div>
-            <div className="destinationCard">Казань</div>
-            <div className="destinationCard">Сочи</div>
-            <div className="destinationCard">Минск</div>
-            <div className="destinationCard">Екатеринбург</div>
-          </div>
-        </section>
-
-        <section className="ctaBlock">
-          <h2>Начните искать билеты прямо сейчас</h2>
-          <p>Введите город вылета и получите лучшие предложения мгновенно.</p>
-          <button>Поиск билетов</button>
-        </section> */}
       </main>
     </>
   );

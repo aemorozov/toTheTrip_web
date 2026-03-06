@@ -63,7 +63,7 @@ export default function FlightsMainBlock({ origin, parameters }: Props) {
 
   if (loading) {
     return (
-      <section className={styles.flightBlock}>
+      <div className={styles.flightBlock}>
         <h2 className={styles.h2}>
           {oneWay ? (
             <>
@@ -87,7 +87,7 @@ export default function FlightsMainBlock({ origin, parameters }: Props) {
             <div className={styles.emptyFlight} key={index}></div>
           ))}
         </div>
-      </section>
+      </div>
     );
   }
 

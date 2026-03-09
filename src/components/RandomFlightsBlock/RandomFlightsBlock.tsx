@@ -62,7 +62,7 @@ export function RandomFlightsBlock() {
   return (
     <section className={styles.flightBlock}>
       <h2 className={styles.h2}>
-        <span className={styles.h2orange}>Best prices</span> from random cities
+        <span className={styles.h2orange}>Special</span> offers
       </h2>
       <div className={styles.flightSection}>
         {flights.map((flight, index) => (

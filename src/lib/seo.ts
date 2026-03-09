@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const siteUrl = "https://tothetrip.app";
+const siteUrl = "https://toTheTrip.app";
 
 export const homeMetadata: Metadata = {
   title: "Cheap Flights from Your City - Compare Best Airfare Deals",
@@ -24,17 +24,17 @@ export const homeMetadata: Metadata = {
   openGraph: {
     type: "website",
     url: siteUrl,
-    title: "Cheap Flights from Your City - ToTheTrip",
+    title: "Cheap Flights from Your City - toTheTrip",
     description:
       "Discover the cheapest flights from your city, compare routes instantly, and find the best airfare deals for one-way, round-trip, and weekend trips.",
-    siteName: "ToTheTrip",
+    siteName: "toTheTrip",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: "Cheapest Flights from Your City in One Click",
     description:
-      "Compare the lowest fares and discover trending destinations from your city with ToTheTrip.",
+      "Compare the lowest fares and discover trending destinations from your city with toTheTrip.",
   },
   category: "travel",
 };
@@ -43,10 +43,10 @@ export const homeStructuredData = [
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "ToTheTrip",
+    name: "toTheTrip",
     url: siteUrl,
     description:
-      "ToTheTrip helps users compare cheap flights from their city and discover the best airfare deals.",
+      "toTheTrip helps users compare cheap flights from their city and discover the best airfare deals.",
     potentialAction: {
       "@type": "SearchAction",
       target: `${siteUrl}/flights/from/{city}`,
@@ -56,9 +56,9 @@ export const homeStructuredData = [
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "ToTheTrip",
+    name: "toTheTrip",
     url: siteUrl,
-    sameAs: ["https://tothetrip.app"],
+    sameAs: ["https://toTheTrip.app"],
   },
   {
     "@context": "https://schema.org",
@@ -69,15 +69,15 @@ export const homeStructuredData = [
         name: "How can I find cheap flights from my city?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Use ToTheTrip to compare destinations and fare types from your departure city. You can review one-way, round-trip, and weekend options in one place.",
+          text: "Use toTheTrip to compare destinations and fare types from your departure city. You can review one-way, round-trip, and weekend options in one place.",
         },
       },
       {
         "@type": "Question",
-        name: "Does ToTheTrip show round-trip and one-way deals?",
+        name: "Does toTheTrip show round-trip and one-way deals?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. ToTheTrip organizes routes by trip type so you can quickly compare one-way flights, round trips, and short weekend escapes.",
+          text: "Yes. toTheTrip organizes routes by trip type so you can quickly compare one-way flights, round trips, and short weekend escapes.",
         },
       },
       {

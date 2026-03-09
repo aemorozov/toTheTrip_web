@@ -5,11 +5,15 @@
   margin: 10px 0;
   background-color: var(--flights-bg);
   border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.flightsData {
   padding: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  transition: 0.3s ease-in-out;
 }
 
 .flight:hover {
@@ -43,4 +47,13 @@
 .link {
   text-decoration: none;
   color: var(--btn-text);
+}
+
+.imageBlock {
+  min-width: 260px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
 }

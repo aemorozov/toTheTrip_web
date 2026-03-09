@@ -3,10 +3,10 @@ import "./globals.css";
 import Navigation from "../components/Navigation/Navigation";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tothetrip.app"),
+  metadataBase: new URL("https://toTheTrip.app"),
   title: {
-    default: "ToTheTrip",
-    template: "%s | ToTheTrip",
+    default: "toTheTrip",
+    template: "%s | toTheTrip",
   },
   description:
     "Find the cheapest flights from your city in one click. Explore real flight deals, cheap destinations, and the lowest airline ticket prices in one place.",

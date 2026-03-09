@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./FlightBlock.module.css";
 import { DateTime } from "luxon";
+import testImage from "../../images/test.jpg";
 
 export default function FlightBlock({ flight, origin = null }) {
   const destination_iata = flight.destination;
@@ -38,31 +40,40 @@ export default function FlightBlock({ flight, origin = null }) {
   return (
     <Link href={link} target="_blank" className={styles.link}>
       <div className={styles.flight}>
-        <div className={styles.flightsInfo}>
-          <div className={styles.cities}>
-            {origin ? (
-              <strong>
-                {origin} ⮂
-                <br />
-              </strong>
-            ) : null}
-            <strong>{flight.destinationCity || flight.destination}</strong>
-          </div>
-          <div className={styles.infoText}>
-            ➡️ {departure_date}, {departure_time}{" "}
-            {depart_transfers ? ` (${depart_transfers})` : null}
-          </div>
-          {flight.return_at ? (
-            <div className={styles.infoText}>
-              ⬅️ {return_date}, {return_time}{" "}
-              {return_transfers ? `${return_transfers}` : null}
-            </div>
-          ) : null}
+        <div className={styles.imageBlock}>
+          <Image
+            src={testImage}
+            alt={`Cheap flight from ${flight.origin} to ${destination_iata}`}
+            className={styles.image}
+          />
         </div>
-        <div className={styles.flightPrice}>
-          <div>
-            {flight.price}
-            <small>€</small>
+        <div className={styles.flightsData}>
+          <div className={styles.flightsInfo}>
+            <div className={styles.cities}>
+              {origin ? (
+                <strong>
+                  {origin} ⮂
+                  <br />
+                </strong>
+              ) : null}
+              <strong>{flight.destinationCity || flight.destination}</strong>
+            </div>
+            <div className={styles.infoText}>
+              ➡️ {departure_date}, {departure_time}{" "}
+              {depart_transfers ? ` (${depart_transfers})` : null}
+            </div>
+            {flight.return_at ? (
+              <div className={styles.infoText}>
+                ⬅️ {return_date}, {return_time}{" "}
+                {return_transfers ? `${return_transfers}` : null}
+              </div>
+            ) : null}
+          </div>
+          <div className={styles.flightPrice}>
+            <div>
+              {flight.price}
+              <small>€</small>
+            </div>
           </div>
         </div>
       </div>

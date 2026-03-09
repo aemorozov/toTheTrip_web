@@ -5,7 +5,7 @@
 }
 
 .flightSection {
-  max-height: 210px;
+  /* max-height: 210px; */
   transition: all 0.3s;
   overflow: auto;
   display: flex;
@@ -30,7 +30,7 @@
 
 .emptyFlight {
   width: 100%;
-  min-height: 100px;
+  min-height: 289px;
   min-width: 260px;
   margin: 10px 0;
   border-radius: 10px;

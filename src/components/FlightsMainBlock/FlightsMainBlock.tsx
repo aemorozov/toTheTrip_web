@@ -92,7 +92,7 @@ export default function FlightsMainBlock({ origin, parameters }: Props) {
   }
 
   if (!flights.length)
-    return <p className={styles.noFlights}>😕 No cheap flights found.</p>;
+    return <p className={styles.noFlights}>Oops! 😕 No cheap flights found.</p>;
 
   const limitedFlights = flights.slice(0, 10);
 

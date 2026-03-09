@@ -46,6 +46,39 @@
 .contentBlock {
   background-color: var(--flights-bg);
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageBlock {
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+  line-height: 0;
+  width: 100%;
+}
+
+.image {
+  display: block;
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+}
+
+.textBlock {
+  display: block;
   padding: 20px;
   font-size: 0.9em;
+}
+
+@media screen and (min-width: 890px) {
+  .contentBlock {
+    flex-direction: row;
+  }
+  .imageBlock {
+    min-width: 400px;
+  }
 }

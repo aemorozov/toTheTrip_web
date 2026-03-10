@@ -5,7 +5,7 @@
 }
 
 .flightSection {
-  /* max-height: 210px; */
+  height: 331px;
   transition: all 0.3s;
   overflow: auto;
   display: flex;

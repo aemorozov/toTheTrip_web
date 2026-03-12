@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./FlightBlock.module.css";
@@ -37,14 +40,28 @@ export default function FlightBlock({ flight, origin = null }) {
   const encodedUrl = encodeURIComponent(baseUrl);
   const link = `https://tp.media/r?marker=59890&trs=443711&p=4114&u=${encodedUrl}&campaign_id=100`;
 
+  const destinationRaw = flight.destinationCity || flight.destination;
+  const destinationName = destinationRaw.split(",")[0].trim();
+  const originName = (flight.originCity || flight.origin || "")
+    .split(",")[0]
+    .trim();
+  const cityImageSrc = `/api/city-image?city=${encodeURIComponent(
+    destinationName,
+  )}`;
+  const [imgSrc, setImgSrc] = useState(cityImageSrc);
+
   return (
     <Link href={link} target="_blank" className={styles.link}>
       <div className={styles.flight}>
         <div className={styles.imageBlock}>
           <Image
-            src={testImage}
-            alt={`Cheap flight from ${flight.origin} to ${destination_iata}`}
+            src={imgSrc}
+            alt={`Cheap flight from ${originName} to ${destinationName}`}
             className={styles.image}
+            width={260}
+            height={180}
+            unoptimized
+            onError={() => setImgSrc(testImage)}
           />
         </div>
         <div className={styles.flightsData}>

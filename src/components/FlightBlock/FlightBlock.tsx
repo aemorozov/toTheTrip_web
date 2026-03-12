@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import styles from "./FlightBlock.module.css";
 import { DateTime } from "luxon";
 import testImage from "../../images/test.jpg";
@@ -48,7 +48,7 @@ export default function FlightBlock({ flight, origin = null }) {
   const cityImageSrc = `/api/city-image?city=${encodeURIComponent(
     destinationName,
   )}`;
-  const [imgSrc, setImgSrc] = useState(cityImageSrc);
+  const [imgSrc, setImgSrc] = useState<string | StaticImageData>(cityImageSrc);
 
   return (
     <Link href={link} target="_blank" className={styles.link}>

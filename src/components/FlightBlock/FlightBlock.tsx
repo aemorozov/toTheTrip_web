@@ -48,7 +48,9 @@ export default function FlightBlock({ flight, origin = null }) {
   const cityImageSrc = `/api/city-image?city=${encodeURIComponent(
     destinationName,
   )}`;
-  const [imgSrc, setImgSrc] = useState<string | StaticImageData>(cityImageSrc);
+  const [imgSrc, setImgSrc] = useState<string | StaticImageData>(
+    cityImageSrc,
+  );
 
   return (
     <Link href={link} target="_blank" className={styles.link}>

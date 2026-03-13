@@ -7,6 +7,10 @@
   border-radius: 10px;
   transition: 0.3s ease-in-out;
   overflow: hidden;
+  height: 282px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .flightsData {

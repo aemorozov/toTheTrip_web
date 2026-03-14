@@ -1,6 +1,6 @@
 .heroBlock {
   width: 100%;
-  height: calc(100dvh - 60px);
+  height: calc(100vh - 60px);
   color: var(--color-primary);
   background: linear-gradient(160deg, #0046b8 0%, #003a99 45%, #002e80 100%);
   position: relative;

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import FlightsMainBlock from "../../../../components/FlightsMainBlock/FlightsMainBlock";
 import styles from "./page.module.css";
 import { cities } from "../../../../lib/cities";
+import Link from "next/link";
 
 export const dynamic = "force-static";
 
@@ -60,13 +61,36 @@ export async function generateMetadata({ params }: PageProps) {
     return {
       title: cityData.title,
       description: cityData.description,
+      openGraph: {
+        title: cityData.title,
+        description: cityData.description,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: cityData.title,
+        description: cityData.description,
+      },
     };
   }
 
   // если нет — делаем универсальный fallback
+  const fallbackTitle = `Cheap flights from ${citySlug}`;
+  const fallbackDescription = `Find and compare cheap flights from ${ucFirst(
+    citySlug,
+  )}. Book airline tickets at the best prices.`;
+
   return {
-    title: `Cheap flights from ${citySlug}`,
-    description: `Find and compare cheap flights from ${ucFirst(citySlug)}. Book airline tickets at the best prices.`,
+    title: fallbackTitle,
+    description: fallbackDescription,
+    openGraph: {
+      title: fallbackTitle,
+      description: fallbackDescription,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fallbackTitle,
+      description: fallbackDescription,
+    },
   };
 }
 
@@ -75,7 +99,6 @@ export async function generateMetadata({ params }: PageProps) {
 ========================= */
 
 export default async function CityPage({ params }: PageProps) {
-  const pageGeneratedAt = new Date();
   let matchedCity: { name: string; code: string };
   const { city } = await params;
   const citySlug = decodeURIComponent(city);
@@ -114,14 +137,42 @@ export default async function CityPage({ params }: PageProps) {
   return (
     <main className={styles.mainBlock}>
       <div className={styles.heroBlock}>
-        <div className={styles.maxWidth960}>
-          <h1 className={styles.title}>
-            Cheapest flights <br />
-            from {matchedCity.name}
-          </h1>
+        <div className={styles.heroBackground} aria-hidden="true" />
+        <div className={styles.heroContent}>
+          <div className={styles.maxWidth960}>
+            <p className={styles.eyebrow}>The best deals</p>
+            <h1 className={styles.title}>
+              Cheap flights from {matchedCity.name}
+            </h1>
+            <p className={styles.subtitle}>
+              Find the best cheap flight deals from {matchedCity.name} for
+              round-trip, one-way, and weekend flights.
+            </p>
+            <div className={styles.heroMeta}>
+              <Link href="#roundTrip">
+                <span>Round trips</span>
+              </Link>
+              <Link href="#oneWay">
+                <span>One way tickets</span>
+              </Link>
+              <Link href="#weekendTrips">
+                <span>Wekend trips</span>
+              </Link>
+            </div>
+            <div className={styles.sectionHeader}>
+              <h2 id="flights-from-city" className={styles.sectionTitle}>
+                Find deals on flights from {matchedCity.name}
+              </h2>
+              <p className={styles.sectionText}>
+                Explore round trips, one-way tickets, and weekend getaways from{" "}
+                {matchedCity.name}. Prices update regularly, so you can spot
+                good fares and plan faster.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <section className={styles.maxWidth960}>
+      <section className={styles.flightsGroup} aria-labelledby="flights-from-city">
         <FlightsMainBlock origin={matchedCity.code} parameters={"roundTrip"} />
         <FlightsMainBlock origin={matchedCity.code} parameters={"oneWay"} />
         <FlightsMainBlock

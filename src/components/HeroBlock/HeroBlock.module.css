@@ -1,6 +1,6 @@
 .heroBlock {
   width: 100%;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 45px);
   color: var(--color-primary);
   background: linear-gradient(160deg, #0046b8 0%, #003a99 45%, #002e80 100%);
   position: relative;
@@ -15,6 +15,9 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
+  background-image: url("../../images/heroBackground.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .heroBackgroundImage {
@@ -79,7 +82,7 @@
 }
 
 .leftBlock {
-  width: 100%;
+  width: 320px;
   text-align: center;
 }
 
@@ -123,8 +126,25 @@
 }
 
 @media screen and (min-width: 880px) {
+  .heroBlock {
+    height: calc(100vh - 55px);
+  }
+
+  .leftBlock {
+    width: 100%;
+  }
+
+  .heroDescription {
+    width: 100%;
+  }
+
   .insideHeroBlock {
-    gap: 50px;
+    gap: 20px;
+  }
+
+  .heroForm {
+    width: 450px;
+    margin: 0 auto;
   }
 
   .heroLabel {

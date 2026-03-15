@@ -63,7 +63,7 @@ export default function FlightsMainBlock({ origin, parameters }: Props) {
 
   if (loading) {
     return (
-      <div className={styles.flightBlock}>
+      <div className={styles.flightBlock} id={parameters}>
         <h2 className={styles.h2}>
           {oneWay ? (
             <>
@@ -92,12 +92,34 @@ export default function FlightsMainBlock({ origin, parameters }: Props) {
   }
 
   if (!flights.length)
-    return <p className={styles.noFlights}>Oops! 😕 No cheap flights found.</p>;
+    return (
+      <div className={styles.flightBlock} id={parameters}>
+        <h2 className={styles.h2}>
+          {oneWay ? (
+            <>
+              <span className={styles.h2orange}>One way</span> cheapest flights
+            </>
+          ) : null}
+          {roundTrip ? (
+            <>
+              <span className={styles.h2orange}>Round trip</span> cheapest
+              flights
+            </>
+          ) : null}
+          {weekendTrips ? (
+            <>
+              <span className={styles.h2orange}>Weekend</span> trips
+            </>
+          ) : null}
+        </h2>
+        <p className={styles.noFlights}>Oops! 😕 No cheap flights found.</p>
+      </div>
+    );
 
   const limitedFlights = flights.slice(0, 10);
 
   return (
-    <div className={styles.flightBlock}>
+    <div className={styles.flightBlock} id={parameters}>
       <h2 className={styles.h2}>
         {oneWay ? (
           <>

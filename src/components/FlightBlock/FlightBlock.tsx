@@ -60,8 +60,8 @@ export default function FlightBlock({ flight, origin = null }) {
             src={imgSrc}
             alt={`Cheap flight from ${originName} to ${destinationName}`}
             className={styles.image}
-            width={260}
-            height={180}
+            fill
+            sizes="(min-width: 880px) 260px, 70vw"
             unoptimized
             onError={() => setImgSrc(testImage)}
           />

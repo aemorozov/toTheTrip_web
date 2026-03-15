@@ -19,6 +19,10 @@ body {
   min-width: 390px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: var(--color-primary);
   font-family:

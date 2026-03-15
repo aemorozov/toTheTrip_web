@@ -4,8 +4,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { cities } from "../../lib/cities";
 import styles from "./HeroBlock.module.css";
-import heroBackground from "../../images/heroBackground.png";
-import Image from "next/image";
 
 type Place = {
   type: "city" | "airport";
@@ -139,23 +137,10 @@ export function HeroBlock() {
 
   return (
     <section className={styles.heroBlock}>
-      <div className={styles.heroBackground}>
-        <Image
-          src={heroBackground}
-          alt="Cheap flights image"
-          fill
-          priority
-          sizes="100vw"
-          className={styles.heroBackgroundImage}
-        />
-      </div>
+      <div className={styles.heroBackground} aria-hidden="true" />
       <div className={styles.insideHeroBlock}>
         <div className={styles.leftBlock}>
-          <h1>
-            Cheapest flights
-            <br />
-            with toTheTrip
-          </h1>
+          <h1>Cheapest flights with toTheTrip</h1>
           <p className={styles.heroDescription}>
             Service for finding the cheapest flights. Explore{" "}
             <strong>the cheapest flight deals</strong> instantly.

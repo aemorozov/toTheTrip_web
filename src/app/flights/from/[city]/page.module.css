@@ -44,7 +44,7 @@
 }
 
 .maxWidth960 {
-  width: min(1100px, 92%);
+  width: min(1100px, 100%);
   margin: 0 auto;
 }
 
@@ -127,7 +127,6 @@
 .sectionText {
   margin: 0;
   color: rgba(239, 255, 236, 0.78);
-  max-width: 720px;
   line-height: 1.5;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }

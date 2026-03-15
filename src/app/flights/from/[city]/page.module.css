@@ -93,6 +93,7 @@
   color: aliceblue;
   text-decoration: none;
   transition: 0.2s ease-in-out;
+  display: block;
 }
 
 .heroMeta span:hover {

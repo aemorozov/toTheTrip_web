@@ -156,7 +156,7 @@ export default async function CityPage({ params }: PageProps) {
                 <span>One way tickets</span>
               </Link>
               <Link href="#weekendTrips">
-                <span>Wekend trips</span>
+                <span>Weekend trips</span>
               </Link>
             </div>
             <div className={styles.sectionHeader}>
@@ -172,7 +172,10 @@ export default async function CityPage({ params }: PageProps) {
           </div>
         </div>
       </div>
-      <section className={styles.flightsGroup} aria-labelledby="flights-from-city">
+      <section
+        className={styles.flightsGroup}
+        aria-labelledby="flights-from-city"
+      >
         <FlightsMainBlock origin={matchedCity.code} parameters={"roundTrip"} />
         <FlightsMainBlock origin={matchedCity.code} parameters={"oneWay"} />
         <FlightsMainBlock

@@ -1,19 +1,13 @@
 .flight {
   width: 100%;
   min-height: 100px;
-  min-width: 260px;
+  min-width: 0;
   margin: 10px 0;
-  background: linear-gradient(
-    180deg,
-    rgba(8, 22, 64, 0.95) 0%,
-    rgba(18, 32, 84, 0.95) 100%
-  );
+  background: var(--surface);
   border-radius: 16px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow:
-    0 18px 36px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
   overflow: hidden;
   height: 282px;
   display: flex;
@@ -32,9 +26,7 @@
 @media (hover: hover) {
   .flight:hover {
     transform: translateY(-3px);
-    box-shadow:
-      0 22px 42px rgba(0, 0, 0, 0.35),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 18px 30px rgba(15, 23, 42, 0.12);
   }
 }
 
@@ -45,15 +37,13 @@
   justify-content: center;
   align-items: center;
   padding: 0 10px 0 0;
-  color: var(--btn-bg);
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  color: var(--bg-accent);
 }
 
 .cities {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--color-primary);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  color: var(--text-main);
 }
 
 .flightsInfo {
@@ -64,13 +54,29 @@
 
 .infoText {
   font-size: 0.8em;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(15, 23, 42, 0.65);
 }
 
 .link {
   text-decoration: none;
-  color: var(--btn-text);
+  color: inherit;
   display: block;
+}
+
+@media screen and (max-width: 879px) {
+  .link {
+    flex: 0 0 260px;
+  }
+
+  .flight {
+    min-width: 260px;
+  }
+}
+
+@media screen and (min-width: 880px) {
+  .link {
+    width: 100%;
+  }
 }
 
 .imageBlock {
@@ -83,5 +89,5 @@
 .image {
   object-fit: cover;
   display: block;
-  filter: saturate(1.05);
+  filter: saturate(1.02);
 }

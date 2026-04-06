@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
-import FlightsMainBlock from "../../../../components/FlightsMainBlock/FlightsMainBlock";
 import styles from "./page.module.css";
 import { cities } from "../../../../lib/cities";
-import Link from "next/link";
+import FlightsTabs from "../../../../components/FlightsTabs/FlightsTabs";
 
 export const dynamic = "force-static";
 
@@ -140,7 +139,12 @@ export default async function CityPage({ params }: PageProps) {
         <div className={styles.heroBackground} aria-hidden="true" />
         <div className={styles.heroContent}>
           <div className={styles.maxWidth960}>
-            <p className={styles.eyebrow}>The best deals</p>
+            <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
+              <a href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <span>Flights from {matchedCity.name}</span>
+              <span className={styles.crumbLabel}>Best deals</span>
+            </nav>
             <h1 className={styles.title}>
               Cheap flights from {matchedCity.name}
             </h1>
@@ -148,17 +152,6 @@ export default async function CityPage({ params }: PageProps) {
               Find the best cheap flight deals from {matchedCity.name} for
               round-trip, one-way, and weekend flights.
             </p>
-            <div className={styles.heroMeta}>
-              <Link href="#roundTrip">
-                <span>Round trips</span>
-              </Link>
-              <Link href="#oneWay">
-                <span>One way tickets</span>
-              </Link>
-              <Link href="#weekendTrips">
-                <span>Weekend trips</span>
-              </Link>
-            </div>
             <div className={styles.sectionHeader}>
               <h2 id="flights-from-city" className={styles.sectionTitle}>
                 Find deals on flights from {matchedCity.name}
@@ -166,7 +159,8 @@ export default async function CityPage({ params }: PageProps) {
               <p className={styles.sectionText}>
                 Explore round trips, one-way tickets, and weekend getaways from{" "}
                 {matchedCity.name}. Prices update regularly, so you can spot
-                good fares and plan faster.
+                good fares and plan faster. Compare airlines, dates, and ticket
+                prices in one place.
               </p>
             </div>
           </div>
@@ -176,12 +170,7 @@ export default async function CityPage({ params }: PageProps) {
         className={styles.flightsGroup}
         aria-labelledby="flights-from-city"
       >
-        <FlightsMainBlock origin={matchedCity.code} parameters={"roundTrip"} />
-        <FlightsMainBlock origin={matchedCity.code} parameters={"oneWay"} />
-        <FlightsMainBlock
-          origin={matchedCity.code}
-          parameters={"weekendTrips"}
-        />
+        <FlightsTabs origin={matchedCity.code} />
       </section>
     </main>
   );

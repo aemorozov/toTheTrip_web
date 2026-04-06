@@ -1,13 +1,11 @@
 .heroBlock {
   width: 100%;
   height: calc(100vh - 45px);
-  color: var(--color-primary);
-  background: linear-gradient(160deg, #0046b8 0%, #003a99 45%, #002e80 100%);
+  color: var(--text-main);
+  background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
   position: relative;
   overflow: hidden;
-  box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.35),
-    inset 0 -60px 120px rgba(0, 0, 0, 0.35);
+  box-shadow: inset 0 -1px 0 var(--border);
 }
 
 .heroBackground {
@@ -18,6 +16,7 @@
   background-image: url("../../images/heroBackground.png");
   background-size: cover;
   background-position: center;
+  opacity: 0.18;
 }
 
 .heroBackgroundImage {
@@ -43,12 +42,11 @@
 }
 
 .heroLabel {
-  color: var(--color-primary);
+  color: var(--text-main);
   margin-bottom: 10px;
   font-size: 1.4em;
   font-weight: 600;
   display: block;
-  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45);
 }
 
 .searchButton {
@@ -71,9 +69,7 @@
   cursor: pointer;
   position: relative;
   transition: transform 100ms ease-in-out;
-  box-shadow:
-    0 10px 22px rgba(0, 0, 0, 0.26),
-    0 3px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-soft);
 }
 
 .searchButton:active {
@@ -89,7 +85,6 @@
 .leftBlock h1 {
   font-size: 2.4em;
   line-height: 1.1;
-  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
 }
 
 .heroDescription {
@@ -97,11 +92,11 @@
   font-weight: 300;
   width: 290px;
   margin: 10px auto;
-  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+  color: rgba(15, 23, 42, 0.72);
 }
 
 .heroInput {
-  border: 0px solid var(--input-border);
+  border: 1px solid var(--border);
   color: var(--input-text);
   width: 100%;
   height: 45px;
@@ -115,14 +110,13 @@
     BlinkMacSystemFont,
     sans-serif;
   font-weight: 600;
-  box-shadow:
-    0 8px 18px rgba(0, 0, 0, 0.2),
-    0 2px 6px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 24 24' fill='%23256bb8'%3E%3Cpath d='M12 2a8 8 0 0 0-8 8c0 5 8 12 8 12s8-7 8-12a8 8 0 0 0-8-8Z'/%3E%3Ccircle cx='12' cy='10' r='3' fill='%23ffffff'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: 14px center;
   background-size: 27px 27px;
   padding-left: 55px;
+  background-color: var(--surface);
 }
 
 @media screen and (min-width: 880px) {

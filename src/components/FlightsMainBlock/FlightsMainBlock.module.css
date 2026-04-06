@@ -7,26 +7,26 @@
   transition: all 0.3s;
   overflow-x: auto;
   display: flex;
+  align-items: stretch;
   gap: 14px;
   padding: 0 0 10px;
   width: 100%;
   scroll-snap-type: x mandatory;
   scroll-padding: 0 20px;
   scrollbar-width: thin;
-  scrollbar-color: #2d2d2d transparent;
+  scrollbar-color: #cbd5f5 transparent;
 }
 
 .h2 {
   margin-bottom: 16px;
   padding: 0 20px;
-  color: var(--color-primary);
+  color: var(--text-main);
   font-size: 1.6em;
   font-weight: 600;
-  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45);
 }
 
 .h2orange {
-  color: var(--btn-bg);
+  color: var(--bg-accent);
 }
 
 .emptyFlight {
@@ -41,16 +41,14 @@
   justify-content: space-between;
   background: linear-gradient(
     110deg,
-    rgba(10, 22, 64, 0.7) 0%,
-    rgba(20, 34, 88, 0.9) 50%,
-    rgba(10, 22, 64, 0.7) 100%
+    #f1f5f9 0%,
+    #e2e8f0 50%,
+    #f1f5f9 100%
   );
   background-size: 200% 100%;
   animation: shimmer 1.4s ease-in-out infinite;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow:
-    0 18px 36px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
 }
 
 .noFlights {

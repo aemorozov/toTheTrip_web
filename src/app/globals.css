@@ -1,15 +1,19 @@
 :root {
-  --bg-main: #090909;
-  --text-main: #fff;
-  --bg-accent: #005cee;
-  --text-accent: #ffffff;
-  --color-primary: #efffec;
-  --input-text: #101630;
-  --btn-bg: #f97026;
-  --btn-text: #fff;
-  --btn-hover: #268eca;
-  --nav-bg: #c8fcec;
-  --flights-bg: #262650;
+  --bg-main: #f8fafc;
+  --text-main: #0f172a;
+  --bg-accent: #2563eb;
+  --text-accent: #0f172a;
+  --color-primary: #0f172a;
+  --input-text: #0f172a;
+  --btn-bg: #2563eb;
+  --btn-text: #ffffff;
+  --btn-hover: #1d4ed8;
+  --nav-bg: #ffffff;
+  --flights-bg: #ffffff;
+  --surface: #ffffff;
+  --surface-muted: #f1f5f9;
+  --border: #e2e8f0;
+  --shadow-soft: 0 10px 24px rgba(15, 23, 42, 0.08);
 }
 
 html,
@@ -24,7 +28,7 @@ html {
 }
 
 body {
-  color: var(--color-primary);
+  color: var(--text-main);
   font-family:
     system-ui,
     -apple-system,
@@ -106,8 +110,8 @@ h2 {
 }
 
 .ctaBlock button {
-  background: #171717;
-  color: white;
+  background: var(--btn-bg);
+  color: var(--btn-text);
   border: none;
   padding: 12px 24px;
   border-radius: 8px;

@@ -65,11 +65,19 @@
 
 @media screen and (max-width: 879px) {
   .link {
-    flex: 0 0 260px;
+    flex: 1 1 auto;
+    width: 100%;
   }
 
   .flight {
-    min-width: 260px;
+    min-width: 0;
+    height: 320px;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .flight {
+    height: 300px;
   }
 }
 
@@ -90,4 +98,16 @@
   object-fit: cover;
   display: block;
   filter: saturate(1.02);
+}
+
+@media screen and (max-width: 879px) {
+  .imageBlock {
+    height: 220px;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .imageBlock {
+    height: 210px;
+  }
 }

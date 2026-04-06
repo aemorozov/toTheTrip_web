@@ -46,7 +46,7 @@ async function loadFlightsByOrigin(origin: string): Promise<ApiFlight[]> {
       unique: "true",
       sorting: "price",
       direct: "true",
-      one_way: "false",
+      one_way: "true",
       limit: "1",
       token: process.env.TRAVELPAYOUTS_API_TOKEN as string,
     });

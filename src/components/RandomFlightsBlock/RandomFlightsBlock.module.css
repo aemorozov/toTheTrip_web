@@ -147,3 +147,23 @@
   content: "";
   flex: 0 0 20px;
 }
+
+@media screen and (max-width: 879px) {
+  .flightSection {
+    flex-direction: column;
+    overflow-x: visible;
+    overflow-y: visible;
+    scroll-snap-type: none;
+    scroll-padding: 0;
+    padding: 0 20px 12px;
+  }
+
+  .flightSection::before,
+  .flightSection::after {
+    display: none;
+  }
+
+  .flightSection > * {
+    scroll-snap-align: none;
+  }
+}

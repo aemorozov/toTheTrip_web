@@ -167,3 +167,16 @@
     scroll-snap-align: none;
   }
 }
+
+@media screen and (max-width: 879px) {
+  .emptyFlight {
+    min-width: 0;
+    height: 350px;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .emptyFlight {
+    height: 350px;
+  }
+}

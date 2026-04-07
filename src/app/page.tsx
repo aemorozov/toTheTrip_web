@@ -21,7 +21,7 @@ export default function HomePage() {
         <HeroBlock />
         <RandomFlightsBlock />
 
-        <section className={styles.seoSection}>
+        {/* <section className={styles.seoSection}>
           <h2>
             Explore real{" "}
             <span className={styles.orange}>cheap flight deals</span> from your
@@ -64,7 +64,7 @@ export default function HomePage() {
               </p>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
     </>
   );

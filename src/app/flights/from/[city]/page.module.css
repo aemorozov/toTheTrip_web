@@ -36,9 +36,7 @@
   background-size:
     cover,
     240px 240px;
-  background-position:
-    center,
-    center;
+  background-position: center, center;
   opacity: 0.45;
 }
 
@@ -136,6 +134,10 @@
   margin: 0;
   color: rgba(15, 23, 42, 0.68);
   line-height: 1.5;
+}
+
+.h1blue {
+  color: var(--bg-accent);
 }
 
 @media screen and (min-width: 880px) {

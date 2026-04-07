@@ -146,21 +146,19 @@ export default async function CityPage({ params }: PageProps) {
               <span className={styles.crumbLabel}>Best deals</span>
             </nav>
             <h1 className={styles.title}>
-              Cheap flights from {matchedCity.name}
+              Cheap flights from{" "}
+              <span className={styles.h1blue}>{matchedCity.name}</span>
             </h1>
-            <p className={styles.subtitle}>
-              Find the best cheap flight deals from {matchedCity.name} for
-              round-trip, one-way, and weekend flights.
-            </p>
             <div className={styles.sectionHeader}>
               <h2 id="flights-from-city" className={styles.sectionTitle}>
-                Find deals on flights from {matchedCity.name}
+                Best deals and low fares from {matchedCity.name}
               </h2>
               <p className={styles.sectionText}>
-                Explore round trips, one-way tickets, and weekend getaways from{" "}
-                {matchedCity.name}. Prices update regularly, so you can spot
-                good fares and plan faster. Compare airlines, dates, and ticket
-                prices in one place.
+                Looking for cheap flights from {matchedCity.name}? Compare
+                low-cost round-trip and one-way tickets, plus weekend getaway
+                flights from {matchedCity.name}. Find low fares by destination,
+                flexible dates, and airlines in one place and book the best
+                flight deals from {matchedCity.name} fast.
               </p>
             </div>
           </div>

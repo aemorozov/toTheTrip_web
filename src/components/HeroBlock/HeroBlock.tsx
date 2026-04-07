@@ -140,11 +140,7 @@ export function HeroBlock() {
       <div className={styles.heroBackground} aria-hidden="true" />
       <div className={styles.insideHeroBlock}>
         <div className={styles.leftBlock}>
-          <h1>Cheapest flights with toTheTrip</h1>
-          <p className={styles.heroDescription}>
-            Service for finding the cheapest flights. Explore{" "}
-            <strong>the cheapest flight deals</strong> instantly.
-          </p>
+          <h1>Cheap flights from</h1>
         </div>
         <div className={styles.heroForm}>
           <input
@@ -168,6 +164,13 @@ export function HeroBlock() {
           <button className={styles.searchButton} onClick={handleSearch}>
             One click
           </button>
+          <p className={styles.heroDescription}>
+            Service for finding the cheapest flights. Explore{" "}
+            <strong>the cheapest flight deals</strong> instantly. We check all
+            available flight APIs and know all the best prices based on the
+            latest searches. All you have to do is see the best deals on flights
+            from your city.
+          </p>
         </div>
       </div>
     </section>

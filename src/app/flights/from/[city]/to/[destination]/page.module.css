@@ -57,6 +57,7 @@
 .breadcrumbs {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
   font-size: 0.84rem;
   color: rgba(15, 23, 42, 0.58);
@@ -343,6 +344,12 @@
 }
 
 @media screen and (max-width: 600px) {
+  .breadcrumbs {
+    gap: 6px 10px;
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+
   .title {
     font-size: 2rem;
     white-space: normal;

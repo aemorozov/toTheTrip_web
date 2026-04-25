@@ -6,7 +6,7 @@
 
 .mainBlock a {
   text-decoration: none;
-  color: inherit;
+  color: #fff;
 }
 
 .heroBlock {
@@ -38,10 +38,6 @@
     240px 240px;
   background-position: center, center;
   opacity: 0.45;
-}
-
-.heroBackgroundImage {
-  object-fit: cover;
 }
 
 .heroContent {
@@ -99,18 +95,8 @@
   text-overflow: ellipsis;
 }
 
-@media screen and (max-width: 600px) {
-  .title {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
-  }
-}
-
-.subtitle {
-  margin: 0 0 14px;
-  font-size: 1rem;
-  color: rgba(15, 23, 42, 0.68);
+.h1blue {
+  color: var(--bg-accent);
 }
 
 .sectionHeader {
@@ -120,7 +106,6 @@
   background: transparent;
   border-top: 1px solid rgba(148, 163, 184, 0.25);
   box-shadow: none;
-  backdrop-filter: none;
 }
 
 .sectionTitle {
@@ -137,33 +122,195 @@
   font-size: 0.8rem;
 }
 
-.h1blue {
-  color: var(--bg-accent);
-}
-
-.copySection {
+.contentSection {
   position: relative;
-  padding: 0 20px 60px;
+  overflow: hidden;
+  padding: 20px 20px 60px;
   background: var(--surface-muted);
 }
 
-.copySection::before {
+.contentSection::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 0;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.72) 24%,
-    rgba(255, 255, 255, 0.9) 100%
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0) 100%
   );
   pointer-events: none;
 }
 
-.copySection > * {
+.contentSection > * {
   position: relative;
   z-index: 1;
+}
+
+.routeMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.routeChip,
+.routeChipMuted {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+}
+
+.routeChip {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.routeChipMuted {
+  color: rgba(15, 23, 42, 0.68);
+}
+
+.routeArrow {
+  color: var(--bg-accent);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.factsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.factCard {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: none;
+}
+
+.factLabel {
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(15, 23, 42, 0.5);
+}
+
+.factValue {
+  margin: 0;
+  font-size: 0.94rem;
+  line-height: 1.3;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.ctaPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(37, 99, 235, 0.16);
+  border-radius: 22px;
+  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 55%, #f8fafc 100%);
+  box-shadow:
+    0 18px 36px rgba(37, 99, 235, 0.08),
+    0 8px 18px rgba(15, 23, 42, 0.06);
+}
+
+.panelTitle {
+  margin: 0 0 8px;
+  font-size: 1.12rem;
+  font-weight: 700;
+}
+
+.panelLead {
+  margin: 0 0 16px;
+  color: rgba(15, 23, 42, 0.68);
+  line-height: 1.5;
+  font-size: 0.92rem;
+}
+
+.panelImageBlock {
+  position: relative;
+  width: 100%;
+  min-height: 180px;
+  overflow: hidden;
+  background: #dbeafe;
+}
+
+.panelImage {
+  object-fit: cover;
+  display: block;
+}
+
+.panelContent {
+  padding: 18px;
+}
+
+.compactFacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 14px;
+}
+
+.compactFact {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.35;
+  color: rgba(15, 23, 42, 0.62);
+}
+
+.providerButtons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  width: 100%;
+  box-shadow: 0 10px 18px rgba(15, 23, 42, 0.12);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-1px);
+  opacity: 0.96;
+}
+
+.aviasalesButton {
+  background: linear-gradient(135deg, #1f6fff 0%, #0f52d6 100%);
+  color: #ffffff;
+}
+
+.kiwiButton {
+  background: linear-gradient(135deg, #00b686 0%, #00a774 100%);
+  color: #ffffff;
+}
+
+.skyscannerButton {
+  background: linear-gradient(135deg, #0a66ff 0%, #0052cc 100%);
+  color: #ffffff;
 }
 
 .copyGrid {
@@ -176,13 +323,12 @@
   padding: 18px;
   border: 1px solid var(--border);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.78);
 }
 
 .copyTitle {
   margin: 0 0 10px;
   font-size: 1.05rem;
-  color: var(--text-main);
 }
 
 .copyText {
@@ -196,27 +342,19 @@
   margin-bottom: 0;
 }
 
-.linkCluster {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  margin-top: 16px;
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 2rem;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
 }
 
-.inlineLinkCard {
-  display: block;
-  padding: 12px 14px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: #fff;
-  color: var(--text-main);
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-.inlineLinkCard:hover {
-  color: var(--bg-accent);
-  border-color: rgba(37, 99, 235, 0.28);
+@media screen and (min-width: 700px) {
+  .factsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media screen and (min-width: 880px) {
@@ -241,38 +379,37 @@
     font-size: 1.2rem;
   }
 
+  .factsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ctaPanel {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+    align-items: stretch;
+    min-height: 300px;
+  }
+
+  .panelImageBlock {
+    min-height: 100%;
+  }
+
+  .panelContent {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .providerButtons {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .compactFacts {
+    margin-top: 18px;
+  }
+
   .copyGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  .linkCluster {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.flightsGroup {
-  position: relative;
-  overflow: hidden;
-  padding: 10px 0 60px;
-  --flight-max-width: 1100px;
-  background: var(--surface-muted);
-}
-
-.flightsGroup::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  opacity: 1;
-  pointer-events: none;
-}
-
-.flightsGroup > * {
-  position: relative;
-  z-index: 1;
 }

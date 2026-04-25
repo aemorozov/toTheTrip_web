@@ -7,8 +7,8 @@ import styles from "./FlightsTabs.module.css";
 type TabId = "roundTrip" | "oneWay" | "weekendTrips";
 
 const tabs: { id: TabId; label: string }[] = [
-  { id: "roundTrip", label: "Round trip" },
   { id: "oneWay", label: "One way" },
+  { id: "roundTrip", label: "Round trip" },
   { id: "weekendTrips", label: "Weekend trips" },
 ];
 
@@ -17,7 +17,7 @@ type Props = {
 };
 
 export default function FlightsTabs({ origin }: Props) {
-  const [activeTab, setActiveTab] = useState<TabId>("roundTrip");
+  const [activeTab, setActiveTab] = useState<TabId>("oneWay");
 
   return (
     <>

@@ -10,62 +10,55 @@ export const metadata: Metadata = homeMetadata;
 
 export default function HomePage() {
   return (
-    <>
-      <main className={styles.main}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(homeStructuredData),
-          }}
-        />
-        <HeroBlock />
-        <RandomFlightsBlock />
-
-        {/* <section className={styles.seoSection}>
-          <h2>
-            Explore real{" "}
-            <span className={styles.orange}>cheap flight deals</span> from your
-            city
+    <main className={styles.main}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homeStructuredData),
+        }}
+      />
+      <HeroBlock />
+      <RandomFlightsBlock />
+      <section className={styles.seoSection} aria-labelledby="home-seo-title">
+        <div className={styles.seoHeader}>
+          <h2 id="home-seo-title">
+            Explore real <span className={styles.orange}>cheap flight deals</span>{" "}
+            from your city
           </h2>
-          <div className={styles.contentBlock}>
-            <div className={styles.imageBlock}>
-              <Image
-                className={styles.image}
-                src={seoPicture}
-                alt="toTheTrip - cheapets flights in one click"
-                loading="eager"
-              />
-            </div>
-            <div className={styles.textBlock}>
-              <p>
-                <strong className={styles.orange}>toTheTrip</strong> helps
-                travelers quickly discover the cheapest flights available from
-                their city. Instead of searching dozens of routes and dates
-                manually, you can explore{" "}
-                <strong className={styles.orange}>real flight deals</strong>{" "}
-                that were our system already found .
-              </p>
-
-              <p>
-                Simply choose your departure city and browse destinations where
-                cheap airline tickets are currently available. The platform{" "}
-                <strong className={styles.orange}>
-                  highlights the lowest prices
-                </strong>
-                , making it easy to find affordable weekend trips, budget travel
-                ideas, and spontaneous getaways.
-              </p>
-
-              <p>
-                Whether you're looking for a quick city break or planning your
-                next trip, <strong className={styles.orange}>toTheTrip</strong>{" "}
-                lets you discover cheap flights, explore new destinations, and
-                find low airfare deals in seconds.
-              </p>
-            </div>
+          <p className={styles.seoLead}>
+            Compare flight deals by departure city, then open route pages with
+            more detailed travel information and outbound search options.
+          </p>
+        </div>
+        <div className={styles.contentBlock}>
+          <div className={styles.imageBlock}>
+            <Image
+              className={styles.image}
+              src={seoPicture}
+              alt="Cheap flights and destination ideas from your city"
+              loading="eager"
+            />
           </div>
-        </section> */}
-      </main>
-    </>
+          <div className={styles.textBlock}>
+            <p>
+              <strong className={styles.orange}>toTheTrip</strong> helps
+              travelers compare cheap flights from their city in one place. You
+              can browse real route ideas, check low fares, and open route pages
+              with extra details for one-way, round-trip, and weekend travel.
+            </p>
+            <p>
+              Instead of searching destinations one by one, use the platform to
+              compare cheap airline tickets, popular city-break routes, and
+              budget travel options from major departure cities across Europe.
+            </p>
+            <p>
+              Whether you are looking for a quick getaway or planning ahead,
+              toTheTrip makes it easier to discover cheap flights, compare
+              airfare options, and spot useful destination pages before booking.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

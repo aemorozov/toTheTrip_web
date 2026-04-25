@@ -7,8 +7,33 @@ import styles from "./FlightBlock.module.css";
 import { DateTime } from "luxon";
 import testImage from "../../images/test.jpg";
 
-export default function FlightBlock({ flight, origin = null }) {
-  const destination_iata = flight.destination;
+type Flight = {
+  origin?: string;
+  destination: string;
+  departure_at: string;
+  return_at?: string;
+  price?: number;
+  airline?: string;
+  flight_number?: number;
+  transfers?: number;
+  return_transfers?: number;
+  destinationCity?: string;
+  originCity?: string;
+};
+
+type Props = {
+  flight: Flight;
+  origin?: string | null;
+};
+
+export default function FlightBlock({ flight, origin = null }: Props) {
+  const slugify = (value: string): string =>
+    value
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, "")
+      .trim()
+      .replace(/\s+/g, "-");
+
   const departure_date = DateTime.fromISO(flight.departure_at, {
     setZone: true,
   })
@@ -31,15 +56,6 @@ export default function FlightBlock({ flight, origin = null }) {
 
   const return_transfers = flight.return_transfers;
 
-  const searchPath = `${flight.origin}${DateTime.fromISO(flight.departure_at, {
-    setZone: true,
-  }).toFormat("ddMM")}${destination_iata}${DateTime.fromISO(flight.return_at, {
-    setZone: true,
-  }).toFormat("ddMM")}1`;
-  const baseUrl = `https://www.aviasales.com/search/${searchPath}?currency=EUR`;
-  const encodedUrl = encodeURIComponent(baseUrl);
-  const link = `https://tp.media/r?marker=59890&trs=443711&p=4114&u=${encodedUrl}&campaign_id=100`;
-
   const destinationRaw = flight.destinationCity || flight.destination;
   const destinationName = destinationRaw.split(",")[0].trim();
   const originName = (flight.originCity || flight.origin || "")
@@ -50,8 +66,53 @@ export default function FlightBlock({ flight, origin = null }) {
   )}`;
   const [imgSrc, setImgSrc] = useState<string | StaticImageData>(cityImageSrc);
 
+  const originSlug = slugify(originName || flight.origin || "");
+  const destinationSlug = slugify(destinationName || flight.destination || "");
+  const params = new URLSearchParams();
+
+  params.set("departure_at", flight.departure_at);
+  params.set("origin_code", flight.origin || "");
+  params.set("destination_code", flight.destination || "");
+
+  if (flight.price !== undefined) {
+    params.set("price", String(flight.price));
+  }
+
+  if (flight.airline) {
+    params.set("airline", flight.airline);
+  }
+
+  if (flight.flight_number !== undefined) {
+    params.set("flight_number", String(flight.flight_number));
+  }
+
+  if (flight.transfers !== undefined) {
+    params.set("transfers", String(flight.transfers));
+  }
+
+  if (flight.return_transfers !== undefined) {
+    params.set("return_transfers", String(flight.return_transfers));
+  }
+
+  if (flight.originCity) {
+    params.set("origin_city", flight.originCity);
+  }
+
+  if (flight.destinationCity) {
+    params.set("destination_city", flight.destinationCity);
+  }
+
+  if (flight.return_at) {
+    params.set("return_at", flight.return_at);
+  }
+
+  const detailsHref =
+    originSlug && destinationSlug
+      ? `/flights/from/${originSlug}/to/${destinationSlug}?${params.toString()}`
+      : "/";
+
   return (
-    <Link href={link} target="_blank" className={styles.link}>
+    <Link href={detailsHref} className={styles.link}>
       <div className={styles.flight}>
         <div className={styles.imageBlock}>
           <Image

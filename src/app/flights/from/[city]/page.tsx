@@ -1,9 +1,12 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 import { cities } from "../../../../lib/cities";
 import FlightsTabs from "../../../../components/FlightsTabs/FlightsTabs";
 
 export const dynamic = "force-static";
+export const dynamicParams = true;
 
 type PageProps = {
   params: Promise<{ city: string }>;
@@ -16,6 +19,13 @@ type Place = {
   country_name?: string;
 };
 
+type ResolvedCity = {
+  code: string;
+  countryName?: string;
+  name: string;
+  slug: string;
+};
+
 function slugify(value: string): string {
   return value
     .toLowerCase()
@@ -24,9 +34,41 @@ function slugify(value: string): string {
     .replace(/\s+/g, "-");
 }
 
-/* =========================
-   ✅ 1. SSG для городов из массива
-========================= */
+async function resolveCity(city: string): Promise<ResolvedCity | null> {
+  const citySlug = decodeURIComponent(city);
+  const cityData = cities[citySlug as keyof typeof cities];
+
+  if (cityData) {
+    return {
+      code: cityData.code,
+      name: cityData.name,
+      slug: citySlug,
+    };
+  }
+
+  const res = await fetch(
+    `https://autocomplete.travelpayouts.com/places2?term=${encodeURIComponent(
+      citySlug,
+    )}&types[]=city&locale=en`,
+    {
+      next: { revalidate: 86400 },
+    },
+  );
+
+  if (!res.ok) return null;
+
+  const places: Place[] = await res.json();
+  const found = places.find((place) => slugify(place.name) === citySlug);
+
+  if (!found) return null;
+
+  return {
+    code: found.code,
+    countryName: found.country_name,
+    name: found.name,
+    slug: citySlug,
+  };
+}
 
 export async function generateStaticParams() {
   return Object.keys(cities).map((city) => ({
@@ -34,113 +76,133 @@ export async function generateStaticParams() {
   }));
 }
 
-/* =========================
-   ✅ 2. Разрешаем динамические slug
-========================= */
-
-export const dynamicParams = true;
-
-/* =========================
-   ✅ 3. Metadata для SEO
-========================= */
-
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { city } = await params;
-  const citySlug = decodeURIComponent(city);
+  const resolvedCity = await resolveCity(city);
 
-  const cityData = cities[citySlug as keyof typeof cities];
-
-  function ucFirst(str) {
-    if (!str) return str; // если строка пустая, возвращаем её же
-    return str[0].toUpperCase() + str.slice(1);
-  }
-
-  // если есть в локальном массиве → используем SEO из него
-  if (cityData) {
+  if (!resolvedCity) {
     return {
-      title: cityData.title,
-      description: cityData.description,
-      openGraph: {
-        title: cityData.title,
-        description: cityData.description,
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: cityData.title,
-        description: cityData.description,
-      },
+      title: "Cheap flights by departure city",
+      description:
+        "Compare cheap flights, low fares, and destination ideas by departure city.",
     };
   }
 
-  // если нет — делаем универсальный fallback
-  const fallbackTitle = `Cheap flights from ${citySlug}`;
-  const fallbackDescription = `Find and compare cheap flights from ${ucFirst(
-    citySlug,
-  )}. Book airline tickets at the best prices.`;
+  const title = `Cheap flights from ${resolvedCity.name}`;
+  const description = `Compare cheap flights from ${resolvedCity.name}, including low fares, one-way and round-trip options, airline choices, and destination ideas from ${resolvedCity.name}.`;
+  const canonical = `/flights/from/${resolvedCity.slug}`;
 
   return {
-    title: fallbackTitle,
-    description: fallbackDescription,
+    title,
+    description,
+    keywords: [
+      `cheap flights from ${resolvedCity.name}`,
+      `${resolvedCity.name} flight deals`,
+      `${resolvedCity.name} one way flights`,
+      `${resolvedCity.name} round trip flights`,
+      `${resolvedCity.name} weekend trips`,
+      `${resolvedCity.name} low fares`,
+    ],
+    alternates: {
+      canonical,
+    },
     openGraph: {
-      title: fallbackTitle,
-      description: fallbackDescription,
+      title,
+      description,
+      type: "article",
+      url: canonical,
     },
     twitter: {
       card: "summary_large_image",
-      title: fallbackTitle,
-      description: fallbackDescription,
+      title,
+      description,
     },
   };
 }
 
-/* =========================
-   ✅ 4. Основная страница
-========================= */
-
 export default async function CityPage({ params }: PageProps) {
-  let matchedCity: { name: string; code: string };
   const { city } = await params;
-  const citySlug = decodeURIComponent(city);
+  const matchedCity = await resolveCity(city);
 
-  const cityData = cities[citySlug as keyof typeof cities];
+  if (!matchedCity) notFound();
 
-  if (cityData) {
-    matchedCity = {
-      name: cityData.name,
-      code: cityData.code,
-    };
-  } else {
-    const res = await fetch(
-      `https://autocomplete.travelpayouts.com/places2?term=${encodeURIComponent(
-        citySlug,
-      )}&types[]=city&locale=en`,
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
       {
-        next: { revalidate: 86400 },
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://toTheTrip.app/",
       },
-    );
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: `Flights from ${matchedCity.name}`,
+        item: `https://toTheTrip.app/flights/from/${matchedCity.slug}`,
+      },
+    ],
+  };
 
-    if (!res.ok) notFound();
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: `Cheap flights from ${matchedCity.name}`,
+    description: `Find cheap flights from ${matchedCity.name}, compare low fares, and browse destination routes from ${matchedCity.name}.`,
+    mainEntity: {
+      "@type": "ItemList",
+      name: `Flight deals from ${matchedCity.name}`,
+    },
+  };
 
-    const places: Place[] = await res.json();
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `How can I find cheap flights from ${matchedCity.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Browse one-way, round-trip, and weekend flight options from ${matchedCity.name}, then compare destination ideas and current prices in one place.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `What kind of routes are shown from ${matchedCity.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `This page highlights low-fare routes from ${matchedCity.name}, including popular city-break destinations, round trips, and budget-friendly one-way flights.`,
+        },
+      },
+    ],
+  };
 
-    const found = places.find((p) => slugify(p.name) === citySlug);
-
-    if (!found) notFound();
-
-    matchedCity = {
-      name: found.name,
-      code: found.code,
-    };
-  }
+  const localCity = cities[matchedCity.slug as keyof typeof cities];
+  const routeLinks = localCity?.destinations ?? [];
 
   return (
     <main className={styles.mainBlock}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            breadcrumbSchema,
+            collectionSchema,
+            faqSchema,
+          ]),
+        }}
+      />
+
       <div className={styles.heroBlock}>
         <div className={styles.heroBackground} aria-hidden="true" />
         <div className={styles.heroContent}>
           <div className={styles.maxWidth960}>
             <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
-              <a href="/">Home</a>
+              <Link href="/">Home</Link>
               <span aria-hidden="true">/</span>
               <span>Flights from {matchedCity.name}</span>
               <span className={styles.crumbLabel}>Best deals</span>
@@ -151,14 +213,13 @@ export default async function CityPage({ params }: PageProps) {
             </h1>
             <div className={styles.sectionHeader}>
               <h2 id="flights-from-city" className={styles.sectionTitle}>
-                Best deals and low fares from {matchedCity.name}
+                Low fares, airlines, and destination ideas from {matchedCity.name}
               </h2>
               <p className={styles.sectionText}>
-                Looking for cheap flights from {matchedCity.name}? Compare
-                low-cost round-trip and one-way tickets, plus weekend getaway
-                flights from {matchedCity.name}. Find low fares by destination,
-                flexible dates, and airlines in one place and book the best
-                flight deals from {matchedCity.name} fast.
+                Compare cheap flights from {matchedCity.name}, including one-way
+                and round-trip fares, low-cost airline options, weekend trips, and
+                destination ideas. This page helps you find the best flight deals
+                from {matchedCity.name} with current route options in one place.
               </p>
             </div>
           </div>
@@ -169,6 +230,61 @@ export default async function CityPage({ params }: PageProps) {
         aria-labelledby="flights-from-city"
       >
         <FlightsTabs origin={matchedCity.code} />
+      </section>
+      <section className={styles.copySection} aria-labelledby="city-copy-title">
+        <div className={styles.maxWidth960}>
+          <div className={styles.copyGrid}>
+            <section className={styles.copyBlock}>
+              <h2 id="city-copy-title" className={styles.copyTitle}>
+                Find cheap flights from {matchedCity.name} with flexible travel
+                options
+              </h2>
+              <p className={styles.copyText}>
+                Compare cheap flights from {matchedCity.name} across one-way,
+                round-trip, and weekend trip searches. This city page is built
+                to help users discover low fares, airline options, and popular
+                destination ideas from {matchedCity.name} faster.
+              </p>
+              <p className={styles.copyText}>
+                If you are searching for the best flight deals from{" "}
+                {matchedCity.name}, review current routes, compare flexible
+                travel dates, and check destination pages with additional route
+                details before booking.
+              </p>
+            </section>
+            <section className={styles.copyBlock}>
+              <h2 className={styles.copyTitle}>
+                Popular flight searches from {matchedCity.name}
+              </h2>
+              <p className={styles.copyText}>
+                Travelers often look for cheap flights from {matchedCity.name}
+                to major European cities, short city-break routes, direct
+                flights, budget airline deals, and low-cost round-trip fares.
+                This page supports those long-tail searches with updated route
+                lists and clear flight categories.
+              </p>
+              <p className={styles.copyText}>
+                Use the tabs above to compare one-way tickets from{" "}
+                {matchedCity.name}, round-trip fares, and weekend getaway ideas,
+                then open any destination page to see route-specific flight
+                details and outbound booking options.
+              </p>
+              {routeLinks.length ? (
+                <div className={styles.linkCluster}>
+                  {routeLinks.slice(0, 10).map((destination) => (
+                    <Link
+                      key={destination.slug}
+                      href={`/flights/from/${matchedCity.slug}/to/${destination.slug}`}
+                      className={styles.inlineLinkCard}
+                    >
+                      Flights from {matchedCity.name} to {destination.name}
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+            </section>
+          </div>
+        </div>
       </section>
     </main>
   );

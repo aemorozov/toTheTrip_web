@@ -37,6 +37,10 @@ body {
   background: var(--bg-main);
 }
 
+body {
+  min-height: 100vh;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -156,6 +160,77 @@ h2 {
   margin-bottom: 8px;
 }
 
+.siteFooter {
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.siteFooterInner {
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 18px 0 22px;
+}
+
+.siteFooterTop {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.siteFooterBrandBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.siteFooterBrand {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.siteFooterCopy {
+  margin: 0;
+  font-size: 0.82rem;
+  color: rgba(15, 23, 42, 0.58);
+  line-height: 1.5;
+}
+
+.siteFooterNav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.siteFooterHeading {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(15, 23, 42, 0.58);
+}
+
+.siteFooterLinks {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px 14px;
+}
+
+.siteFooterLink {
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.siteFooterLink:hover {
+  color: var(--bg-accent);
+  text-decoration: underline;
+}
+
 /* Media Queries */
 @media screen and (min-width: 768px) {
   .heroBlock {
@@ -187,6 +262,10 @@ h2 {
   .squareCardsGrid {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .siteFooterLinks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -200,6 +279,33 @@ h2 {
 
   .squareCardsGrid {
     grid-template-columns: repeat(6, 1fr);
+  }
+
+  .siteFooterTop {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  .siteFooterBrandBlock {
+    width: min(260px, 100%);
+  }
+
+  .siteFooterNav {
+    flex: 1;
+    align-items: flex-end;
+  }
+
+  .siteFooterHeading {
+    width: 100%;
+    text-align: left;
+    max-width: 720px;
+  }
+
+  .siteFooterLinks {
+    width: 100%;
+    max-width: 720px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .menu {

@@ -39,7 +39,7 @@ export const metadata: Metadata = {
       "Compare cheap flights, route ideas, and low fares from your city in one place.",
   },
   verification: {
-    google: "Kkvm8DeaYZamlTQNL14u8XH-P4-EsxrgiWbCvHDFnx8",
+    google: "ane8uRAjkLjUKBDRdKZczqGw-i3c_ilmr5eO7dB0C-M",
   },
   robots: {
     index: true,

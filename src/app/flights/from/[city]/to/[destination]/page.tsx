@@ -330,12 +330,6 @@ export default async function FlightDetailsPage({ params }: PageProps) {
       {
         "@type": "ListItem",
         position: 2,
-        name: `Flights from ${route.origin.name}`,
-        item: `https://toTheTrip.app/flights/from/${route.origin.slug}`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
         name: `${route.origin.name} to ${route.destination.name}`,
         item: `https://toTheTrip.app/flights/from/${route.origin.slug}/to/${route.destination.slug}`,
       },
@@ -411,11 +405,11 @@ export default async function FlightDetailsPage({ params }: PageProps) {
             <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
               <Link href="/">Home</Link>
               <span aria-hidden="true">/</span>
-              <Link href={`/flights/from/${route.origin.slug}`}>
-                Flights from {route.origin.name}
-              </Link>
+              <span>Flight search</span>
               <span aria-hidden="true">/</span>
-              <span>To {route.destination.name}</span>
+              <span>
+                {route.origin.name} → {route.destination.name}
+              </span>
               <span className={styles.crumbLabel}>Route details</span>
             </nav>
             <h1 className={styles.title}>

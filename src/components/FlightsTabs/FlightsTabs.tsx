@@ -1,50 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import FlightsMainBlock from "../FlightsMainBlock/FlightsMainBlock";
 import styles from "./FlightsTabs.module.css";
 
-type TabId = "roundTrip" | "oneWay" | "weekendTrips";
-
-const tabs: { id: TabId; label: string }[] = [
-  { id: "oneWay", label: "One way" },
-  { id: "roundTrip", label: "Round trip" },
-  { id: "weekendTrips", label: "Weekend trips" },
-];
+type Duration = "short" | "week" | "weekend";
 
 type Props = {
   origin: string;
 };
 
 export default function FlightsTabs({ origin }: Props) {
-  const [activeTab, setActiveTab] = useState<TabId>("oneWay");
-
+  const searchParams = useSearchParams();
+  const requestedTrip = searchParams.get("trip");
+  const requestedMonth = searchParams.get("month");
+  const requestedDuration = searchParams.get("duration");
+  const trip =
+    requestedTrip === "roundTrip" ? "roundTrip" : "oneWay";
+  const month = /^\d{4}-(0[1-9]|1[0-2])$/.test(requestedMonth ?? "")
+    ? requestedMonth
+    : null;
+  const duration: Duration | null =
+    requestedDuration === "short" ||
+    requestedDuration === "week" ||
+    requestedDuration === "weekend"
+      ? requestedDuration
+      : null;
   return (
-    <>
-      <div className={styles.tabList} role="tablist" aria-label="Flight types">
-        {tabs.map((tab) => {
-          const isActive = activeTab === tab.id;
-          return (
-            <button
-              key={tab.id}
-              type="button"
-              role="tab"
-              aria-selected={isActive}
-              className={`${styles.tabButton} ${isActive ? styles.active : ""}`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </button>
-          );
-        })}
-      </div>
-      <div className={styles.tabPanel} role="tabpanel">
-        <FlightsMainBlock
-          key={activeTab}
-          origin={origin}
-          parameters={activeTab}
-        />
-      </div>
-    </>
+    <div className={styles.tabPanel}>
+      <FlightsMainBlock
+        origin={origin}
+        parameters={trip}
+        month={month}
+        duration={duration}
+      />
+    </div>
   );
 }

@@ -409,11 +409,17 @@ export default function RouteDetailsClient({
   const directFlightEstimate =
     estimateFlightTime(resolvedDistanceKm) || estimatedFlightTime;
 
-  const compactFacts = [
-    `${tripType} flight`,
-    departureDateTimeLabel || null,
+  const travelDates = [
+    departureDateTimeLabel,
     returnDateTimeLabel ? `Return ${returnDateTimeLabel}` : null,
+  ].filter(Boolean) as string[];
+
+  const tripMeta = [
+    `${tripType} flight`,
     tripLength ? `Trip length ${tripLength}` : null,
+  ].filter(Boolean) as string[];
+
+  const compactFacts = [
     distanceLabel ? `Distance ${distanceLabel}` : null,
     directFlightEstimate ? `Approx. direct time ${directFlightEstimate}` : null,
     outboundTransfers ? `Outbound ${outboundTransfers.toLowerCase()}` : null,
@@ -437,7 +443,26 @@ export default function RouteDetailsClient({
           />
         </div>
         <div className={styles.panelContent}>
-          <h2 className={styles.panelTitle}>Search this route on travel sites</h2>
+          <div className={styles.tripSummary}>
+            {travelDates.length ? (
+              <div className={styles.travelDates}>
+                {travelDates.map((date) => (
+                  <p key={date}>{date}</p>
+                ))}
+              </div>
+            ) : null}
+            <div className={styles.tripMeta}>
+              {tripMeta.map((fact) => (
+                <p key={fact}>{fact}</p>
+              ))}
+            </div>
+            {!travelDates.length ? (
+              <p className={styles.tripSummaryFallback}>Travel dates are selected on the booking site.</p>
+            ) : null}
+          </div>
+          <h2 className={styles.panelTitle}>
+            Check this route{price ? ` from ${price} EUR` : ""}
+          </h2>
           <p className={styles.panelLead}>
             Compare prices for flights from {originName} to {destinationName} on
             major travel platforms.
@@ -468,13 +493,15 @@ export default function RouteDetailsClient({
               Skyscanner
             </a>
           </div>
-          <div className={styles.compactFacts}>
-            {compactFacts.map((fact) => (
-              <p key={fact} className={styles.compactFact}>
-                {fact}
-              </p>
-            ))}
-          </div>
+          {compactFacts.length ? (
+            <div className={styles.compactFacts}>
+              {compactFacts.map((fact) => (
+                <p key={fact} className={styles.compactFact}>
+                  {fact}
+                </p>
+              ))}
+            </div>
+          ) : null}
         </div>
       </div>
 

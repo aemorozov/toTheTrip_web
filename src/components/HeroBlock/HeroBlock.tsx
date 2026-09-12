@@ -11,6 +11,36 @@ type Place = {
   city_name?: string;
 };
 
+type TripType = "oneWay" | "roundTrip";
+type FlightDuration = "short" | "week" | "weekend";
+type MonthOption = { value: string; label: string };
+
+const tripTypes: { id: TripType; label: string }[] = [
+  { id: "oneWay", label: "One way" },
+  { id: "roundTrip", label: "Round trip" },
+];
+
+const flightDurations: { id: FlightDuration; label: string }[] = [
+  { id: "short", label: "2–3 days" },
+  { id: "week", label: "4–7 days" },
+  { id: "weekend", label: "Weekend" },
+];
+
+function getUpcomingMonths(): MonthOption[] {
+  const formatter = new Intl.DateTimeFormat("en", { month: "long" });
+  const now = new Date();
+  const currentMonth = now.getMonth();
+  const currentYear = now.getFullYear();
+
+  return Array.from({ length: 4 }, (_, index) => {
+    const date = new Date(currentYear, currentMonth + index, 1);
+    return {
+      value: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`,
+      label: formatter.format(date),
+    };
+  });
+}
+
 function slugify(value: string): string {
   return value
     .toLowerCase()
@@ -21,7 +51,11 @@ function slugify(value: string): string {
 
 export function HeroBlock() {
   const router = useRouter();
+  const upcomingMonths = getUpcomingMonths();
   const [city, setCity] = useState("");
+  const [tripType, setTripType] = useState<TripType>("roundTrip");
+  const [month, setMonth] = useState(() => upcomingMonths[0]?.value ?? "");
+  const [duration, setDuration] = useState<FlightDuration>("week");
   const lockedByUser = useRef(false);
 
   const safeSetCity = (value?: string) => {
@@ -95,7 +129,12 @@ export function HeroBlock() {
     }
 
     const slug = slugify(normalized);
-    router.push(`/flights/from/${slug}`);
+    const filters = new URLSearchParams({
+      trip: tripType,
+      month,
+    });
+    if (tripType === "roundTrip") filters.set("duration", duration);
+    router.push(`/flights/from/${slug}?${filters}`);
   };
 
   // 🌍 Автоопределение при загрузке
@@ -160,6 +199,65 @@ export function HeroBlock() {
               }
             }}
           />
+
+          <div className={styles.filters} aria-label="Flight filters">
+            <div className={styles.filterRow}>
+              <div className={styles.filterButtons}>
+                {tripTypes.map((option) => {
+                  const isSelected = tripType === option.id;
+                  return (
+                    <button
+                      key={option.id}
+                      type="button"
+                      className={`${styles.filterButton} ${isSelected ? styles.filterButtonActive : ""}`}
+                      aria-pressed={isSelected}
+                      onClick={() => setTripType(option.id)}
+                    >
+                      {option.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className={styles.filterRow}>
+              <div className={styles.filterButtons}>
+                {upcomingMonths.map((option) => {
+                  const isSelected = month === option.value;
+                  return (
+                    <button
+                      key={option.value}
+                      type="button"
+                      className={`${styles.filterButton} ${isSelected ? styles.filterButtonActive : ""}`}
+                      aria-pressed={isSelected}
+                      onClick={() => setMonth(option.value)}
+                    >
+                      {option.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className={styles.filterRow}>
+              <div className={styles.filterButtons}>
+                {flightDurations.map((option) => {
+                  const isSelected = duration === option.id;
+                  return (
+                    <button
+                      key={option.id}
+                      type="button"
+                      className={`${styles.filterButton} ${isSelected ? styles.filterButtonActive : ""}`}
+                      aria-pressed={isSelected}
+                      onClick={() => setDuration(option.id)}
+                    >
+                      {option.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
 
           <button className={styles.searchButton} onClick={handleSearch}>
             One click

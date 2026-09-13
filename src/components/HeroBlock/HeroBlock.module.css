@@ -103,6 +103,7 @@
   width: 290px;
   margin: 10px auto;
   color: rgba(15, 23, 42, 0.6);
+  text-align: justify;
 }
 
 .heroInput {

@@ -263,11 +263,9 @@ export function HeroBlock() {
             One click
           </button>
           <p className={styles.heroDescription}>
-            Service for finding the cheapest flights. Explore{" "}
-            <strong>the cheapest flight deals</strong> instantly. We check all
-            available flight APIs and know all the best prices based on the
-            latest searches. All you have to do is see the best deals on flights
-            from your city.
+            Your service for finding the cheapest flights. Fare prices are based
+            on rates found within the last 7 days and are subject to change
+            prior to booking.
           </p>
         </div>
       </div>

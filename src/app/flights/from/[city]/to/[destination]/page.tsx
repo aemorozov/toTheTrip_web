@@ -418,24 +418,29 @@ export default async function FlightDetailsPage({ params }: PageProps) {
               <span className={styles.h1blue}>{route.destination.name}</span>
             </h1>
             <div className={styles.sectionHeader}>
-              <h2 id="route-overview" className={styles.sectionTitle}>
+              {/* <h2 id="route-overview" className={styles.sectionTitle}>
                 Low fares, distance, and flight details for {route.origin.name} to{" "}
                 {route.destination.name}
-              </h2>
+              </h2> */}
               <p className={styles.sectionText}>
                 Compare cheap flights from {route.origin.name} to{" "}
-                {route.destination.name}, including route distance, travel dates,
-                direct or connecting options, low fares, and airline details.
-                This route page helps you find the best flight deals from{" "}
-                {route.origin.name} to {route.destination.name} with useful route
-                facts in one place.
+                {route.destination.name}, including route distance, travel
+                dates, direct or connecting options, low fares, and airline
+                details.
+              </p>
+              <p className={styles.sectionText}>
+                Fare prices are based on rates found within the last 7 days and
+                are subject to change prior to booking.
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <section className={styles.contentSection} aria-labelledby="route-overview">
+      <section
+        className={styles.contentSection}
+        aria-labelledby="route-overview"
+      >
         <div className={styles.maxWidth960}>
           <RouteDetailsClient
             destinationCode={route.destination.code}

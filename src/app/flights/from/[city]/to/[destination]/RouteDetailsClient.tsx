@@ -410,8 +410,8 @@ export default function RouteDetailsClient({
     estimateFlightTime(resolvedDistanceKm) || estimatedFlightTime;
 
   const travelDates = [
-    departureDateTimeLabel,
-    returnDateTimeLabel ? `Return ${returnDateTimeLabel}` : null,
+    `Flight at ${departureDateTimeLabel}`,
+    returnDateTimeLabel ? `Return at ${returnDateTimeLabel}` : null,
   ].filter(Boolean) as string[];
 
   const tripMeta = [
@@ -457,16 +457,18 @@ export default function RouteDetailsClient({
               ))}
             </div>
             {!travelDates.length ? (
-              <p className={styles.tripSummaryFallback}>Travel dates are selected on the booking site.</p>
+              <p className={styles.tripSummaryFallback}>
+                Travel dates are selected on the booking site.
+              </p>
             ) : null}
           </div>
           <h2 className={styles.panelTitle}>
             Check this route{price ? ` from ${price} EUR` : ""}
           </h2>
-          <p className={styles.panelLead}>
+          {/* <p className={styles.panelLead}>
             Compare prices for flights from {originName} to {destinationName} on
             major travel platforms.
-          </p>
+          </p> */}
           <div className={styles.providerButtons}>
             <a
               className={`${styles.ctaButton} ${styles.aviasalesButton}`}

@@ -39,7 +39,11 @@ type SearchFilters = {
 };
 
 function getFirstValue(value: string | string[] | undefined): string | null {
-  return typeof value === "string" ? value : Array.isArray(value) ? value[0] ?? null : null;
+  return typeof value === "string"
+    ? value
+    : Array.isArray(value)
+      ? (value[0] ?? null)
+      : null;
 }
 
 function isMonth(value: string | null): value is string {
@@ -87,7 +91,10 @@ function getDurationLabel(duration: Duration | null): string | null {
 }
 
 function getSearchTitle(city: string, filters: SearchFilters): string {
-  const tripLabel = filters.trip === "roundTrip" ? "Round-trip flight deals" : "One-way flight deals";
+  const tripLabel =
+    filters.trip === "roundTrip"
+      ? "Round-trip flight deals"
+      : "One-way flight deals";
   const monthPart = filters.monthLabel ? ` in ${filters.monthLabel}` : "";
   const durationLabel = getDurationLabel(filters.duration);
   const durationPart = durationLabel
@@ -96,7 +103,8 @@ function getSearchTitle(city: string, filters: SearchFilters): string {
       : ` — ${durationLabel.toLowerCase()} trips`
     : "";
 
-  return `${tripLabel} from ${city}${monthPart}${durationPart}`;
+  // return `${tripLabel} from ${city}${monthPart}${durationPart}`;
+  return `${tripLabel} from ${city}`;
 }
 
 function getDurationDescription(duration: Duration | null): string | null {
@@ -221,13 +229,11 @@ export default async function CityPage({ params, searchParams }: PageProps) {
   const tripLabel = filters.trip === "roundTrip" ? "Round trip" : "One way";
   const durationLabel = getDurationLabel(filters.duration);
   const canonical = `/flights/from/${matchedCity.slug}`;
-  const searchSummary = [
-    tripLabel,
-    filters.monthLabel,
-    durationLabel,
-  ].filter(Boolean) as string[];
+  const searchSummary = [tripLabel, filters.monthLabel, durationLabel].filter(
+    Boolean,
+  ) as string[];
   const durationDescription = getDurationDescription(filters.duration);
-  const resultDescription = `These results show direct ${tripLabel.toLowerCase()} fares from ${matchedCity.name}${filters.monthLabel ? ` for ${filters.monthLabel}` : ""}${durationDescription ? ` and ${durationDescription}` : ""}. Fares are based on recently found prices and can change before booking.`;
+  const resultDescription = `Fare prices are based on rates found within the last 7 days and are subject to change prior to booking.`;
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -308,21 +314,15 @@ export default async function CityPage({ params, searchParams }: PageProps) {
               <span>Flight search</span>
               <span aria-hidden="true">/</span>
               <span>From {matchedCity.name}</span>
-              <span className={styles.crumbLabel}>Search results</span>
+              {/* <span className={styles.crumbLabel}>Search results</span> */}
             </nav>
             <h1 className={styles.title}>
-              {filters.hasFilters ? (
+              {
                 <>
-                  {filters.trip === "roundTrip" ? "Round-trip flight deals" : "One-way flight deals"} from{" "}
+                  Cheap flights from{" "}
                   <span className={styles.h1blue}>{matchedCity.name}</span>
-                  {filters.monthLabel ? ` in ${filters.monthLabel}` : ""}
-                  {durationLabel ? ` for ${durationLabel.toLowerCase()}` : ""}
                 </>
-              ) : (
-                <>
-                  Cheap flights from <span className={styles.h1blue}>{matchedCity.name}</span>
-                </>
-              )}
+              }
             </h1>
             {filters.hasFilters ? (
               <ul className={styles.filterSummary} aria-label="Applied filters">
@@ -332,11 +332,6 @@ export default async function CityPage({ params, searchParams }: PageProps) {
               </ul>
             ) : null}
             <div className={styles.sectionHeader}>
-              <h2 id="flights-from-city" className={styles.sectionTitle}>
-                {filters.hasFilters
-                  ? "What these results include"
-                  : `Low fares, airlines, and destination ideas from ${matchedCity.name}`}
-              </h2>
               <p className={styles.sectionText}>
                 {filters.hasFilters
                   ? resultDescription

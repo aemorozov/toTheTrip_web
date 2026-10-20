@@ -1,136 +1,36 @@
-# 🌍 ToTheTrip Web
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-<p align="center">
-  <b>Next-generation flight deal discovery platform</b><br>
-  Main part of ecosystem of travel projects.<br>
-  Built with Next.js • SEO-first architecture • AI-powered travel content
-</p>
+## Getting Started
 
-> 🚧 **Project Status: Early Development (≈10% complete)**  
-> Telegram bot + channels part: https://github.com/aemorozov/toTheTrip_telegram-bot<br>
-> The foundation is built. Core architecture is in place. Active development in progress.
+First, run the development server:
 
----
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## ✈️ Overview
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-**ToTheTrip Web** is the next evolution of the ToTheTrip ecosystem.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Unlike the Telegram bot, this project is a fully web-based flight deal discovery platform focused on:
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-- High-performance SSR rendering  
-- SEO-optimized destination pages  
-- AI-enhanced travel content  
-- Scalable architecture for global expansion  
+## Learn More
 
-The goal is to build a search-first, content-driven travel platform that ranks organically and converts through smart deal discovery.
+To learn more about Next.js, take a look at the following resources:
 
-🌐 Preview (in progress):  
-**https://tothetrip.app**
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
----
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## 🚀 Vision
+## Deploy on Vercel
 
-To build a scalable, SEO-driven flight discovery platform that:
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- Automatically generates high-ranking destination pages
-- Highlights the cheapest flight deals
-- Uses data intelligence to evaluate deal quality
-- Leverages AI to enhance content presentation
-- Scales globally across cities and countries
-
----
-
-## 🏗 Current Development Stage (10%)
-
-### ✅ Implemented
-
-- Project architecture (Next.js + TypeScript)
-- Core routing structure
-- API integration layer
-- SSR setup for popular destinations
-- Basic SEO structure
-- Deployment pipeline
-
-### 🚧 In Progress
-
-- Dynamic destination pages
-- Deal scoring algorithm adaptation (web version)
-- Metadata automation
-- Structured data (Schema.org)
-- Internal linking strategy
-
-### 🔜 Planned
-
-- Programmatic SEO pages (cities, countries, routes)
-- AI-generated content blocks
-- Price trend visualization
-- Personalization layer
-- Admin dashboard
-- Affiliate optimization system
-
----
-
-## 🧠 Core Concept
-
-The platform integrates:
-
-- Flight pricing data (Travel APIs)
-- AI-generated content (OpenAI API)
-- Server-side rendering (SSR)
-- Search engine optimization strategy
-- Data-driven deal evaluation
-
-The idea is not just to show flights —  
-but to highlight **exceptional opportunities**.
-
----
-
-## ⚙️ Tech Stack
-
-- **TypeScript**
-- **Next.js**
-- **React**
-- Server-Side Rendering (SSR)
-- SEO optimization
-- Travel APIs (same ecosystem as Telegram bot)
-- OpenAI API
-- Modern deployment pipeline
-
----
-
-## 🎯 Strategic Focus
-
-This project is being built with:
-
-- 📈 Organic traffic in mind
-- ⚡ Performance-first architecture
-- 🌍 International scalability
-- 🤖 AI-powered content enrichment
-- 🧩 Modular expansion capability
-
----
-
-## 🔮 Long-Term Goal
-
-To evolve into a fully automated flight deal discovery ecosystem:
-
-- Programmatic SEO at scale
-- AI-enhanced destination insights
-- Smart deal scoring
-- Data-driven ranking system
-- Cross-platform integration (Web + Telegram)
-
----
-
-## 📌 Note
-
-This project is currently in active development and not feature-complete.  
-The live preview reflects the architectural direction rather than final functionality.
-
----
-
-<p align="center">
-  Building the future of automated travel discovery 🌍
-</p>
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

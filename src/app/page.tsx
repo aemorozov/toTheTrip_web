@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { HeroBlock } from "../components/HeroBlock/HeroBlock";
-import { RandomFlightsBlock } from "../components/RandomFlightsBlock/RandomFlightsBlock";
+// import { RandomFlightsBlock } from "../components/RandomFlightsBlock/RandomFlightsBlock";
 import styles from "./page.module.css";
 import { homeMetadata, homeStructuredData } from "../lib/seo";
 import Image from "next/image";
@@ -18,12 +18,13 @@ export default function HomePage() {
         }}
       />
       <HeroBlock />
-      <RandomFlightsBlock />
-      <section className={styles.seoSection} aria-labelledby="home-seo-title">
+      {/* <RandomFlightsBlock /> */}
+      {/* <section className={styles.seoSection} aria-labelledby="home-seo-title">
         <div className={styles.seoHeader}>
           <h2 id="home-seo-title">
-            Explore real <span className={styles.orange}>cheap flight deals</span>{" "}
-            from your city
+            Explore real{" "}
+            <span className={styles.orange}>cheap flight deals</span> from your
+            city
           </h2>
           <p className={styles.seoLead}>
             Compare flight deals by departure city, then open route pages with
@@ -58,7 +59,7 @@ export default function HomePage() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

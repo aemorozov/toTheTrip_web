@@ -30,6 +30,7 @@ html {
 body {
   color: var(--text-main);
   font-family:
+    "Lato",
     system-ui,
     -apple-system,
     BlinkMacSystemFont,

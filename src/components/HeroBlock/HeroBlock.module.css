@@ -1,6 +1,6 @@
 .heroBlock {
   width: 100%;
-  height: calc(100vh - 45px);
+  height: 100vh;
   color: var(--text-main);
   background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
   position: relative;
@@ -194,10 +194,6 @@
 }
 
 @media screen and (min-width: 880px) {
-  .heroBlock {
-    height: calc(100vh - 55px);
-  }
-
   .leftBlock {
     width: 100%;
   }

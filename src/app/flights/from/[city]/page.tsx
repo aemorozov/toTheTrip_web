@@ -347,7 +347,7 @@ export default async function CityPage({ params, searchParams }: PageProps) {
       >
         <FlightsTabs origin={matchedCity.code} />
       </section>
-      <section className={styles.copySection} aria-labelledby="city-copy-title">
+      {/* <section className={styles.copySection} aria-labelledby="city-copy-title">
         <div className={styles.maxWidth960}>
           <div className={styles.copyGrid}>
             <section className={styles.copyBlock}>
@@ -399,7 +399,7 @@ export default async function CityPage({ params, searchParams }: PageProps) {
             </section>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

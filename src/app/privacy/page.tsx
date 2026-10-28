@@ -152,7 +152,7 @@ export default function PrivacyPolicyPage() {
         team.
       </p>
       <p>
-        Email: <strong>[INSERT YOUR CONTACT EMAIL]</strong>
+        Email: <strong>mr.aemorozov @ gmail.com</strong>
       </p>
     </main>
   );
